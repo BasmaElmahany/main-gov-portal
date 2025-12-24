@@ -1,0 +1,59 @@
+$primary: #002D62;
+$accent: #D4AF37;
+
+.gov-tours {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 24px;
+
+  &.rtl {
+    direction: rtl;
+  }
+}
+
+.tour-card {
+  cursor: pointer;
+  border-radius: 16px;
+  overflow: hidden;
+  transition: transform .25s ease, box-shadow .25s ease;
+
+  &:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,.18);
+  }
+
+  img {
+    height: 220px;
+    object-fit: cover;
+  }
+
+  h2 {
+    font-size: 18px;
+    font-weight: 800;
+    color: $primary;
+    margin: 12px 0;
+  }
+
+  .date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    color: $accent;
+  }
+
+  .excerpt {
+    font-size: 14px;
+    color: #444;
+    line-height: 1.7;
+  }
+}
+
+.loading {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: center;
+}

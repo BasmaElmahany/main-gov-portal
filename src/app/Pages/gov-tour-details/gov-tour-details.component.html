@@ -1,0 +1,24 @@
+<section class="gov-tour-details" *ngIf="!loading && tour" [class.rtl]="lang.current === 'ar'">
+
+    <h1>{{ title() }}</h1>
+
+    <div class="date">
+        <mat-icon>event</mat-icon>
+        {{ formatDate(tour.date) }}
+    </div>
+
+
+    <article>
+        {{ article() }}
+    </article>
+
+    <!-- Gallery -->
+    <div class="gallery">
+        <img *ngFor="let p of tour.photos" [src]="imageUrl(p.photoUrl)" alt="tour image">
+    </div>
+
+</section>
+
+<div class="loading" *ngIf="loading">
+    <mat-progress-spinner></mat-progress-spinner>
+</div>

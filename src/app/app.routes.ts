@@ -3,9 +3,11 @@ import { Routes } from '@angular/router';
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
 
- { path: 'home', loadComponent: () => import('./Pages/home/home.component').then(m => m.HomeComponent) },
-//  { path: 'leaders', loadComponent: () => import('./pages/leaders/leaders.component').then(m => m.LeadersComponent) },
-  //{ path: 'entities', loadComponent: () => import('./pages/entities/entities.component').then(m => m.EntitiesComponent) },
+  { path: 'home', loadComponent: () => import('./Pages/home/home.component').then(m => m.HomeComponent) },
+  { path: 'leaders', loadComponent: () => import('./Pages/leaders/leaders.component').then(m => m.LeadersComponent) },
+  { path: 'govtours', loadComponent: () => import('./Pages/gov-tours/gov-tours.component').then(m => m.GovToursComponent) },
+  { path: 'gov-tours/:id', loadComponent: () => import('./Pages/gov-tour-details/gov-tour-details.component').then(m => m.GovTourDetailsComponent) },
+
   //{ path: 'tourism', loadComponent: () => import('./pages/tourism/tourism.component').then(m => m.TourismComponent) },
   //{ path: 'investment', loadComponent: () => import('./pages/investment/investment.component').then(m => m.InvestmentComponent) },
   //{ path: 'services', loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent) },
@@ -21,3 +23,4 @@ export const routes: Routes = [
 
   { path: '**', redirectTo: 'home' },
 ];
+``

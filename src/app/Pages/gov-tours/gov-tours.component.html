@@ -1,1 +1,29 @@
-<p>gov-tours works!</p>
+<section class="gov-tours" [class.rtl]="lang.current === 'ar'">
+
+  <div class="loading" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <mat-card
+    class="tour-card"
+    *ngFor="let tour of tours"
+    [routerLink]="['/gov-tours', tour.id]">
+
+    <img mat-card-image [src]="cover(tour)" />
+
+    <mat-card-content>
+      <h2>{{ title(tour) }}</h2>
+
+      <p class="date">
+         <mat-icon>event</mat-icon>
+        {{ formatDate(tour.date) }}
+      </p>
+
+      <p class="excerpt">
+        {{ excerpt(tour) }}
+      </p>
+    </mat-card-content>
+
+  </mat-card>
+
+</section>

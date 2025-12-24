@@ -117,6 +117,15 @@
         {{ item.key | t }}
       </a>
 
+      <a
+        *ngFor="let item of nav"
+        class="menu-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/govtours' }">
+        {{ item.key | t }}
+      </a>
+
       <!-- Services Mega Trigger -->
       <button
         mat-button

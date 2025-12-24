@@ -20,7 +20,7 @@ type MegaItem = { key: string; path: string; icon: string; descKey?: string };
 @Component({
   selector: 'app-header',
   standalone: true,
- imports: [
+  imports: [
     CommonModule, RouterLink, RouterLinkActive, ReactiveFormsModule,
     MatToolbarModule, MatButtonModule, MatIconModule, MatMenuModule,
     MatFormFieldModule, MatInputModule, MatDividerModule,
@@ -30,7 +30,7 @@ type MegaItem = { key: string; path: string; icon: string; descKey?: string };
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
- private destroyRef = inject(DestroyRef);
+  private destroyRef = inject(DestroyRef);
   private megaCloseTimer: any = null;
   q = new FormControl<string>('', { nonNullable: true });
   isMenuOpen = signal(false);
@@ -42,6 +42,7 @@ export class HeaderComponent {
   nav = [
     { path: '/home', key: 'nav.home' },
     { path: '/leaders', key: 'nav.leaders' },
+    { path: '/govtours', key: 'nav.govtours' },
     { path: '/tourism', key: 'nav.tourism' },
     { path: '/investment', key: 'nav.investment' },
     { path: '/contact', key: 'nav.contact' },

@@ -1,7 +1,6 @@
 {
   "portal.title": "Minya Governorate Digital Portal",
   "portal.subtitle": "Modern services, transparent governance",
-
   "nav.home": "Home",
   "nav.leaders": "Leaders",
   "nav.entities": "Entities",
@@ -15,15 +14,13 @@
   "nav.health": "Health",
   "nav.education": "Education",
   "nav.social": "Social Services",
-
+  "nav.govtours": "Governor Tours",
   "search.placeholder": "Search services (e.g., hospital, certificate...)",
-
   "home.heroTitle": "A modern digital gateway for citizens",
   "home.heroSubtitle": "Services, announcements, and transparent information in one place",
   "home.quickServices": "Quick Services",
   "home.latestNews": "Latest News & Announcements",
   "home.statistics": "Key Statistics",
-
   "footer.about": "About the Portal",
   "footer.aboutText": "A unified platform for services, announcements, and public information.",
   "footer.links": "Quick Links",

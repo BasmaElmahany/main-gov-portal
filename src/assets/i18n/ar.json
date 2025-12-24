@@ -1,7 +1,6 @@
 {
   "portal.title": "البوابة الرقمية لمحافظة المنيا",
   "portal.subtitle": "خدمات حديثة وحوكمة شفافة",
-
   "nav.home": "الرئيسية",
   "nav.leaders": "القيادات",
   "nav.entities": "الكيانات",
@@ -15,15 +14,13 @@
   "nav.health": "الصحة",
   "nav.education": "التعليم",
   "nav.social": "الخدمات الاجتماعية",
-
+  "nav.govtours": "جولات السيد المحافظ",
   "search.placeholder": "ابحث في الخدمات (مثال: مستشفى، شهادة...)",
-
   "home.heroTitle": "بوابة رقمية حديثة لخدمة المواطن",
   "home.heroSubtitle": "خدمات وإعلانات ومعلومات موثوقة في مكان واحد",
   "home.quickServices": "خدمات سريعة",
   "home.latestNews": "آخر الأخبار والإعلانات",
   "home.statistics": "إحصائيات",
-
   "footer.about": "عن البوابة",
   "footer.aboutText": "منصة موحدة للخدمات والإعلانات والمعلومات العامة.",
   "footer.links": "روابط سريعة",

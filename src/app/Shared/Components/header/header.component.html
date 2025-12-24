@@ -1,0 +1,329 @@
+<header class="gov-header">
+
+  <!-- =====================================================
+       1) UTILITY BAR (Top strip)
+  ====================================================== -->
+  <div class="utility-bar">
+    <div class="container utility-inner" [attr.dir]="lang.dir">
+
+      <!-- Left utility links -->
+      <div class="utility-left">
+        <a class="u-link" routerLink="/contact">
+          <mat-icon>call</mat-icon>
+          <span>{{ lang.current === 'ar' ? 'اتصل بنا' : 'Contact' }}</span>
+        </a>
+
+        <span class="dot"></span>
+
+        <a class="u-link" routerLink="/archive">
+          <mat-icon>campaign</mat-icon>
+          <span>{{ lang.current === 'ar' ? 'الإعلانات' : 'Announcements' }}</span>
+        </a>
+
+        <span class="dot"></span>
+
+        <a class="u-link" routerLink="/services">
+          <mat-icon>apps</mat-icon>
+          <span>{{ lang.current === 'ar' ? 'الخدمات' : 'Services' }}</span>
+        </a>
+      </div>
+
+      <!-- Right utility actions -->
+      <div class="utility-right">
+        <button mat-stroked-button class="lang-btn" (click)="toggleLang()">
+          <mat-icon>translate</mat-icon>
+          <span>{{ lang.current === 'ar' ? 'EN' : 'AR' }}</span>
+        </button>
+
+        <button mat-stroked-button class="acc-btn" type="button">
+          <mat-icon>accessibility_new</mat-icon>
+          <span>{{ lang.current === 'ar' ? 'إتاحة' : 'Accessibility' }}</span>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- =====================================================
+       2) MAIN BAR (Brand + Search + Mobile Menu)
+  ====================================================== -->
+  <div class="main-bar">
+    <div class="container main-inner" [attr.dir]="lang.dir">
+
+      <!-- Brand -->
+      <a class="brand" routerLink="/home">
+        <img class="logo" src="/assets/logo.png" alt="Portal Logo" />
+        <div class="brand-text">
+          <div class="title">{{ 'portal.title' | t }}</div>
+          <div class="subtitle">{{ 'portal.subtitle' | t }}</div>
+        </div>
+      </a>
+
+      <!-- Search -->
+      <form class="search" (submit)="$event.preventDefault(); submitSearch()">
+        <mat-form-field appearance="outline" class="search-field">
+          <mat-icon matPrefix>search</mat-icon>
+          <input
+            matInput
+            [formControl]="q"
+            [placeholder]="'search.placeholder' | t" />
+        </mat-form-field>
+
+        <button
+          mat-raised-button
+          color="primary"
+          class="search-btn"
+          type="submit">
+          {{ lang.current === 'ar' ? 'بحث' : 'Search' }}
+        </button>
+      </form>
+
+      <!-- Mobile menu button -->
+      <button
+        mat-icon-button
+        class="menu-btn"
+        aria-label="Menu"
+        [matMenuTriggerFor]="mobileMenu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <!-- Mobile menu -->
+      <mat-menu #mobileMenu="matMenu">
+        <a mat-menu-item *ngFor="let item of nav" [routerLink]="item.path">
+          {{ item.key | t }}
+        </a>
+        <a mat-menu-item routerLink="/services">{{ 'nav.services' | t }}</a>
+        <a mat-menu-item routerLink="/entities">{{ 'nav.entities' | t }}</a>
+        <a mat-menu-item routerLink="/archive">{{ 'nav.archive' | t }}</a>
+        <a mat-menu-item routerLink="/news">{{ 'nav.news' | t }}</a>
+      </mat-menu>
+
+    </div>
+  </div>
+
+  <!-- =====================================================
+       3) DESKTOP NAV BAR
+  ====================================================== -->
+  <nav class="menu-bar">
+    <div class="container menu-inner" [attr.dir]="lang.dir">
+
+      <!-- Basic links -->
+      <a
+        *ngFor="let item of nav"
+        class="menu-link"
+        [routerLink]="item.path"
+        routerLinkActive="active"
+        [routerLinkActiveOptions]="{ exact: item.path === '/home' }">
+        {{ item.key | t }}
+      </a>
+
+      <!-- Services Mega Trigger -->
+      <button
+        mat-button
+        class="menu-link menu-trigger"
+        [matMenuTriggerFor]="servicesMenu"
+        #servicesTrig="matMenuTrigger"
+        (mouseenter)="openMega(servicesTrig)"
+        (mouseleave)="scheduleMegaClose(servicesTrig)">
+        <mat-icon class="mi">apps</mat-icon>
+        <span>{{ 'nav.services' | t }}</span>
+        <mat-icon class="chev">expand_more</mat-icon>
+      </button>
+
+      <!-- Entities Mega Trigger -->
+      <button
+        mat-button
+        class="menu-link menu-trigger"
+        [matMenuTriggerFor]="entitiesMenu"
+        #entitiesTrig="matMenuTrigger"
+        (mouseenter)="openMega(entitiesTrig)"
+        (mouseleave)="scheduleMegaClose(entitiesTrig)">
+        <mat-icon class="mi">account_balance</mat-icon>
+        <span>{{ 'nav.entities' | t }}</span>
+        <mat-icon class="chev">expand_more</mat-icon>
+      </button>
+
+      <!-- Archive Mega Trigger -->
+      <button
+        mat-button
+        class="menu-link menu-trigger"
+        [matMenuTriggerFor]="archiveMenu"
+        #archiveTrig="matMenuTrigger"
+        (mouseenter)="openMega(archiveTrig)"
+        (mouseleave)="scheduleMegaClose(archiveTrig)">
+        <mat-icon class="mi">article</mat-icon>
+        <span>{{ 'nav.archive' | t }}</span>
+        <mat-icon class="chev">expand_more</mat-icon>
+      </button>
+
+      <!-- News -->
+      <a class="menu-link" routerLink="/news" routerLinkActive="active">
+        {{ 'nav.news' | t }}
+      </a>
+
+    </div>
+  </nav>
+
+  <!-- =====================================================
+       4) MEGA MENUS (Services / Entities / Archive)
+  ====================================================== -->
+
+  <!-- SERVICES -->
+  <mat-menu
+    #servicesMenu="matMenu"
+    class="mega-panel"
+    [overlapTrigger]="false"
+    [hasBackdrop]="false"
+    yPosition="below"
+    [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
+
+    <div class="mega"
+         (mouseenter)="clearMegaClose()"
+         (mouseleave)="scheduleMegaClose(servicesTrig)">
+
+      <div class="mega-top">
+        <mat-icon>apps</mat-icon>
+        <div>
+          <div class="mega-title">{{ 'nav.services' | t }}</div>
+          <div class="mega-sub">
+            {{ lang.current === 'ar'
+              ? 'تصنيفات وخدمات إلكترونية'
+              : 'Categories & e-services' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="mega-grid">
+        <div class="mega-col" *ngFor="let col of servicesMega">
+          <div class="mega-h">{{ col.titleKey | t }}</div>
+          <a
+            class="mega-item"
+            *ngFor="let it of col.items"
+            [routerLink]="it.path"
+            (click)="servicesTrig.closeMenu()">
+            <mat-icon>{{ it.icon }}</mat-icon>
+            <span>{{ it.key | t }}</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </mat-menu>
+
+  <!-- ENTITIES -->
+  <mat-menu
+    #entitiesMenu="matMenu"
+    class="mega-panel"
+    [overlapTrigger]="false"
+    [hasBackdrop]="false"
+    yPosition="below"
+    [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
+
+    <div class="mega"
+         (mouseenter)="clearMegaClose()"
+         (mouseleave)="scheduleMegaClose(entitiesTrig)">
+
+      <div class="mega-top">
+        <mat-icon>account_balance</mat-icon>
+        <div>
+          <div class="mega-title">{{ 'nav.entities' | t }}</div>
+          <div class="mega-sub">
+            {{ lang.current === 'ar'
+              ? 'الجهات والإدارات والهيئات'
+              : 'Departments & authorities' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="mega-grid">
+        <div class="mega-col" *ngFor="let col of entitiesMega">
+          <div class="mega-h">{{ col.titleKey | t }}</div>
+          <a
+            class="mega-item"
+            *ngFor="let it of col.items"
+            [routerLink]="it.path"
+            (click)="entitiesTrig.closeMenu()">
+            <mat-icon>{{ it.icon }}</mat-icon>
+            <span>{{ it.key | t }}</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </mat-menu>
+
+  <!-- ARCHIVE -->
+  <mat-menu
+    #archiveMenu="matMenu"
+    class="mega-panel"
+    [overlapTrigger]="false"
+    [hasBackdrop]="false"
+    yPosition="below"
+    [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
+
+    <div class="mega"
+         (mouseenter)="clearMegaClose()"
+         (mouseleave)="scheduleMegaClose(archiveTrig)">
+
+      <div class="mega-top">
+        <mat-icon>article</mat-icon>
+        <div>
+          <div class="mega-title">{{ 'nav.archive' | t }}</div>
+          <div class="mega-sub">
+            {{ lang.current === 'ar'
+              ? 'أخبار، إعلانات، وثائق ووسائط'
+              : 'News, announcements, documents & media' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="mega-grid">
+        <div class="mega-col" *ngFor="let col of archiveMega">
+          <div class="mega-h">{{ col.titleKey | t }}</div>
+          <a
+            class="mega-item"
+            *ngFor="let it of col.items"
+            [routerLink]="it.path"
+            (click)="archiveTrig.closeMenu()">
+            <mat-icon>{{ it.icon }}</mat-icon>
+            <span>{{ it.key | t }}</span>
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </mat-menu>
+
+  <!-- =====================================================
+       5) NEWS TICKER
+  ====================================================== -->
+  <div class="ticker" [attr.dir]="langDir">
+    <div class="container ticker-inner">
+
+      <div class="ticker-label">
+        <mat-icon>campaign</mat-icon>
+        <span>{{ lang.current === 'ar' ? 'تنويه' : 'Notice' }}</span>
+      </div>
+
+      <div class="ticker-track">
+        <div class="ticker-move">
+          <a
+            class="ticker-item"
+            *ngFor="let n of tickerItems"
+            routerLink="/archive">
+            {{ tickerText(n) }}
+          </a>
+          <!-- duplicated for seamless scroll -->
+          <a
+            class="ticker-item"
+            *ngFor="let n of tickerItems"
+            routerLink="/archive">
+            {{ tickerText(n) }}
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</header>

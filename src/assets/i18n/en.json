@@ -1,0 +1,34 @@
+{
+  "portal.title": "Governorate Digital Portal",
+  "portal.subtitle": "Modern services, transparent governance",
+
+  "nav.home": "Home",
+  "nav.leaders": "Leaders",
+  "nav.entities": "Entities",
+  "nav.tourism": "Tourism",
+  "nav.investment": "Investment",
+  "nav.services": "Services",
+  "nav.archive": "Archive",
+  "nav.contact": "Contact",
+  "nav.about": "About",
+  "nav.news": "News",
+  "nav.health": "Health",
+  "nav.education": "Education",
+  "nav.social": "Social Services",
+
+  "search.placeholder": "Search services (e.g., hospital, certificate...)",
+
+  "home.heroTitle": "A modern digital gateway for citizens",
+  "home.heroSubtitle": "Services, announcements, and transparent information in one place",
+  "home.quickServices": "Quick Services",
+  "home.latestNews": "Latest News & Announcements",
+  "home.statistics": "Key Statistics",
+
+  "footer.about": "About the Portal",
+  "footer.aboutText": "A unified platform for services, announcements, and public information.",
+  "footer.links": "Quick Links",
+  "footer.contact": "Contact",
+  "footer.phone": "Phone",
+  "footer.email": "Email",
+  "footer.rights": "All rights reserved"
+}

@@ -1,0 +1,287 @@
+<!-- ===== Cairo-style Sections (added) ===== -->
+
+<section class="section highlight-row pro-highlight">
+
+  <!-- LEFT: Tabs -->
+  <mat-card class="gov-card panel info-card">
+    <div class="panel-head pro-head">
+      <h3 class="panel-title pro-title">
+        {{ lang.current === 'ar' ? 'القاهرة في سطور' : 'Cairo in Brief' }}
+      </h3>
+
+      <a class="more-link pro-more" routerLink="/about">
+        {{ lang.current === 'ar' ? 'المزيد' : 'More' }}
+        <mat-icon>chevron_left</mat-icon>
+      </a>
+    </div>
+
+    <mat-tab-group class="mini-tabs pro-tabs" animationDuration="300ms">
+      <mat-tab label="{{ lang.current === 'ar' ? 'القاهرة في سطور' : 'Overview' }}">
+        <div class="tab-body pro-tab-body">
+          <p class="p pro-p">
+            {{ lang.current === 'ar'
+              ? 'نبذة مختصرة عن المحافظة، تاريخها، أهم المعالم، والخدمات المتاحة للمواطنين.'
+              : 'A short overview of the governorate, history, key landmarks, and citizen services.' }}
+          </p>
+
+          <div class="tab-media pro-media">
+            <div class="media-shot" style="--shot:url('/assets/sections/cairo-brief.jpg')"></div>
+
+            <div class="media-actions">
+              <a class="btn-link pro-btn" routerLink="/about">
+                {{ lang.current === 'ar' ? 'اقرأ المزيد' : 'Read more' }}
+                <mat-icon>arrow_back</mat-icon>
+              </a>
+
+              <div class="mini-badges">
+                <span class="mini-badge">{{ lang.current === 'ar' ? 'معلومة' : 'Info' }}</span>
+                <span class="mini-badge alt">{{ lang.current === 'ar' ? 'خدمات' : 'Services' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="{{ lang.current === 'ar' ? 'خطة المحافظة' : 'Governorate Plan' }}">
+        <div class="tab-body pro-tab-body">
+          <p class="p pro-p">
+            {{ lang.current === 'ar'
+              ? 'أهداف التنمية، المشروعات الجارية، وأولويات العمل خلال الفترة الحالية.'
+              : 'Development goals, ongoing projects, and current priorities.' }}
+          </p>
+
+          <div class="tab-media pro-media">
+            <div class="media-shot" style="--shot:url('/assets/sections/plan.jpg')"></div>
+
+            <div class="media-actions">
+              <a class="btn-link pro-btn" routerLink="/investment">
+                {{ lang.current === 'ar' ? 'عرض المبادرات' : 'View initiatives' }}
+                <mat-icon>arrow_back</mat-icon>
+              </a>
+
+              <div class="mini-badges">
+                <span class="mini-badge">{{ lang.current === 'ar' ? 'تنمية' : 'Growth' }}</span>
+                <span class="mini-badge alt">{{ lang.current === 'ar' ? 'مشروعات' : 'Projects' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+
+      <mat-tab label="{{ lang.current === 'ar' ? 'خرائط المحافظة' : 'Maps' }}">
+        <div class="tab-body pro-tab-body">
+          <p class="p pro-p">
+            {{ lang.current === 'ar'
+              ? 'خرائط تفاعلية ومعلومات مرجعية للمناطق والخدمات.'
+              : 'Interactive maps and reference information for districts and services.' }}
+          </p>
+
+          <div class="tab-media pro-media">
+            <div class="media-shot" style="--shot:url('/assets/sections/maps.jpg')"></div>
+
+            <div class="media-actions">
+              <a class="btn-link pro-btn" routerLink="/entities">
+                {{ lang.current === 'ar' ? 'عرض الجهات' : 'View entities' }}
+                <mat-icon>arrow_back</mat-icon>
+              </a>
+
+              <div class="mini-badges">
+                <span class="mini-badge">{{ lang.current === 'ar' ? 'GIS' : 'GIS' }}</span>
+                <span class="mini-badge alt">{{ lang.current === 'ar' ? 'مناطق' : 'Districts' }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+  </mat-card>
+
+  <!-- RIGHT: Featured -->
+  <mat-card class="gov-card panel featured pro-featured">
+    <div class="featured-wrap pro-featured-wrap">
+      <div class="featured-img pro-featured-img" style="--img:url('/assets/sections/featured.jpg')">
+        <div class="featured-badge">
+          <mat-icon>star</mat-icon>
+          <span>{{ lang.current === 'ar' ? 'خبر مميز' : 'Featured' }}</span>
+        </div>
+      </div>
+
+      <div class="featured-body">
+        <div class="featured-top">
+          <h3 class="panel-title pro-title">
+            {{ lang.current === 'ar' ? 'أهم الأخبار' : 'Top Update' }}
+          </h3>
+          <span class="date-pill">{{ (data.news?.[0]?.dateISO || (todayISO)) | date:'mediumDate' }}</span>
+        </div>
+
+        <div class="featured-title pro-featured-title">
+          {{ data.news?.[0] ? text(data.news[0].title) : (lang.current === 'ar' ? 'عنوان خبر مميز' : 'Featured headline') }}
+        </div>
+
+        <div class="li-sub pro-featured-sub">
+          {{ data.news?.[0] ? text(data.news[0].summary) : (lang.current === 'ar' ? 'وصف مختصر للخبر المميز.' : 'Short summary of the featured update.') }}
+        </div>
+
+        <div class="quick-links pro-quick">
+          <a class="ql" routerLink="/leaders">
+            <span class="ql-ic"><mat-icon>person</mat-icon></span>
+            <span class="ql-t">{{ lang.current === 'ar' ? 'السيد المحافظ' : 'Governor' }}</span>
+          </a>
+
+          <a class="ql" routerLink="/services">
+            <span class="ql-ic"><mat-icon>apps</mat-icon></span>
+            <span class="ql-t">{{ lang.current === 'ar' ? 'الخدمات الإلكترونية' : 'E-Services' }}</span>
+          </a>
+
+          <a class="ql" routerLink="/archive">
+            <span class="ql-ic"><mat-icon>article</mat-icon></span>
+            <span class="ql-t">{{ lang.current === 'ar' ? 'الأخبار والوثائق' : 'News & Docs' }}</span>
+          </a>
+
+          <a class="ql" routerLink="/contact">
+            <span class="ql-ic"><mat-icon>call</mat-icon></span>
+            <span class="ql-t">{{ lang.current === 'ar' ? 'اتصل بنا' : 'Contact' }}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </mat-card>
+
+</section>
+
+
+<!-- B) 3 blocks: Ads / Latest Videos / Governor Tours -->
+<section class="section media-row stripe">
+  <mat-card class="gov-card panel">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'لوحة الإعلانات' : 'Announcements Board' }}</h3>
+    </div>
+
+    <mat-tab-group class="carousel" animationDuration="300ms">
+      <mat-tab *ngFor="let img of adsImages" label=" ">
+        <div class="media-box">
+          <img class="media-img" [src]="img" alt="Ad" />
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <div class="mini-hint subtle">{{ lang.current === 'ar' ? 'اسحب للتنقل' : 'Swipe to navigate' }}</div>
+  </mat-card>
+
+  <mat-card class="gov-card panel">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'أحدث الفيديوهات' : 'Latest Videos' }}</h3>
+    </div>
+
+    <div class="video-box">
+      <img class="media-img" src="/assets/sections/video-thumb.jpg" alt="Video" />
+      <button mat-fab color="primary" class="play" aria-label="Play">
+        <mat-icon>play_arrow</mat-icon>
+      </button>
+    </div>
+    <div class="mini-hint subtle">{{ lang.current === 'ar' ? 'روابط الفيديو داخل الأرشيف' : 'Video links are available in Archive' }}</div>
+  </mat-card>
+
+  <mat-card class="gov-card panel">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'جولات المحافظ' : 'Governor Tours' }}</h3>
+    </div>
+
+    <mat-tab-group class="carousel" animationDuration="300ms">
+      <mat-tab *ngFor="let img of toursImages" label=" ">
+        <div class="media-box">
+          <img class="media-img" [src]="img" alt="Tour" />
+        </div>
+      </mat-tab>
+    </mat-tab-group>
+    <div class="mini-hint subtle">{{ lang.current === 'ar' ? 'المزيد داخل الأخبار' : 'More inside News' }}</div>
+  </mat-card>
+</section>
+
+<!-- C) 3 columns lists: Misc / New in portal / This month -->
+<section class="section lists-row stripe">
+  <mat-card class="gov-card panel">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'متنوعة' : 'Misc' }}</h3>
+    </div>
+    <ul class="link-list">
+      <li *ngFor="let x of miscLinks"><a [routerLink]="x.path">{{ x.label | t }}</a></li>
+    </ul>
+  </mat-card>
+
+  <mat-card class="gov-card panel">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'الجديد في البوابة' : 'New on Portal' }}</h3>
+    </div>
+    <ul class="link-list">
+      <li *ngFor="let x of newLinks"><a [routerLink]="x.path">{{ x.label | t }}</a></li>
+    </ul>
+    <div class="center-actions">
+      <a mat-stroked-button routerLink="/archive">{{ lang.current === 'ar' ? 'شاهد الكل' : 'View all' }}</a>
+    </div>
+  </mat-card>
+
+  <mat-card class="gov-card panel">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'ما تم هذا الشهر' : 'This Month' }}</h3>
+    </div>
+
+    <div class="month-list">
+      <a class="month-item" *ngFor="let n of monthItems" routerLink="/archive">
+        <img class="mini-thumb" [src]="n.img" alt="thumb" />
+        <div class="month-text">
+          <div class="li-title">{{ text(n.title) }}</div>
+          <div class="li-sub">{{ n.date }}</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="center-actions">
+      <a mat-stroked-button routerLink="/archive">{{ lang.current === 'ar' ? 'شاهد الكل' : 'View all' }}</a>
+    </div>
+  </mat-card>
+</section>
+
+<!-- D) Contact / Important events / Important sites -->
+<section class="section bottom-row stripe">
+  <mat-card class="gov-card panel contact-card">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'اتصل بمحافظة' : 'Contact' }}</h3>
+    </div>
+
+    <div class="contact-lines">
+      <div class="cl">
+        <mat-icon>mail</mat-icon>
+        <span>info-gov.local</span>
+      </div>
+      <div class="cl">
+        <mat-icon>call</mat-icon>
+        <span>012-345-6789</span>
+      </div>
+      <div class="cl">
+        <mat-icon>support_agent</mat-icon>
+        <span>{{ lang.current === 'ar' ? 'خدمة المواطنين' : 'Citizen Support' }}</span>
+      </div>
+    </div>
+  </mat-card>
+
+  <mat-card class="gov-card panel">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'أهم الأحداث' : 'Important Events' }}</h3>
+    </div>
+    <div class="banner">
+      <img class="banner-img" src="/assets/sections/events.jpg" alt="Events" />
+    </div>
+  </mat-card>
+
+  <mat-card class="gov-card panel ">
+    <div class="panel-head centered">
+      <h3 class="panel-title">{{ lang.current === 'ar' ? 'مواقع تهمك' : 'Useful Sites' }}</h3>
+    </div>
+
+    <div class="stack-banners">
+      <a class="sb" href="#" rel="nofollow"><img src="/assets/sections/site-1.jpg" alt="site" /></a>
+      <a class="sb" href="#" rel="nofollow"><img src="/assets/sections/site-2.jpg" alt="site" /></a>
+      <a class="sb" href="#" rel="nofollow"><img src="/assets/sections/site-3.jpg" alt="site" /></a>
+    </div>
+  </mat-card>
+</section>

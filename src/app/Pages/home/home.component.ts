@@ -32,13 +32,13 @@ export class HomeComponent {
 
 
   adsImages = [
-    '/assets/sections/ad-1.jpg',
+    '/assets/images/gettyimages-519020152-170667a.jpg',
     '/assets/sections/ad-2.jpg',
     '/assets/sections/ad-3.jpg',
   ];
 
   toursImages = [
-    '/assets/sections/tour-1.jpg',
+    '/assets/images/gettyimages-519020152-170667a.jpg',
     '/assets/sections/tour-2.jpg',
     '/assets/sections/tour-3.jpg',
   ];
@@ -60,7 +60,7 @@ export class HomeComponent {
 
   monthItems = [
     {
-      img: '/assets/sections/month-1.jpg',
+      img: '/assets/images/gettyimages-519020152-170667a.jpg',
       date: this.lang.current === 'ar' ? '09 ديسمبر 2025' : 'Dec 09, 2025',
       title: { ar: 'افتتاح مشروع خدمي جديد', en: 'Opening a new service project' }
     },

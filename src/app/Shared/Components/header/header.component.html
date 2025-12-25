@@ -47,63 +47,37 @@
   <!-- =====================================================
        2) MAIN BAR (Brand + Search + Mobile Menu)
   ====================================================== -->
-  <div class="main-bar">
-    <div class="container main-inner" [attr.dir]="lang.dir">
+  <header class="gov-hero-header"  style="background-color: #f3f8f8;"   [attr.dir]="lang.dir">
 
-      <!-- Brand -->
-      <a class="brand" routerLink="/home" title="Home">
-        <img class="logo" src="/assets/images/nefertiti.jpeg" alt="Portal Logo" />
-        <div class="brand-text">
-          <div class="title">{{ 'portal.title' | t }}</div>
-          <div class="subtitle">{{ 'portal.subtitle' | t }}</div>
-        </div>
-      </a>
-
-      <!-- Search -->
-      <form class="search" (submit)="$event.preventDefault(); submitSearch()">
-        <mat-form-field appearance="outline" class="search-field">
-          <mat-icon matPrefix>search</mat-icon>
-          <input
-            matInput
-            [formControl]="q"
-            [placeholder]="'search.placeholder' | t"
-            aria-label="Search" />
-        </mat-form-field>
-
-        <button
-          mat-raised-button
-          color="primary"
-          class="search-btn"
-          type="submit"
-          title="Submit search">
-          {{ lang.current === 'ar' ? 'بحث' : 'Search' }}
-        </button>
-      </form>
-
-      <!-- Mobile menu button -->
-      <button
-        mat-icon-button
-        class="menu-btn"
-        aria-label="Menu"
-        [matMenuTriggerFor]="mobileMenu"
-        title="Open menu">
-        <mat-icon>menu</mat-icon>
-      </button>
-
-      <!-- Mobile menu -->
-      <mat-menu #mobileMenu="matMenu" class="mobile-menu-panel">
-        <a mat-menu-item *ngFor="let item of nav" [routerLink]="item.path">
-          {{ item.key | t }}
-        </a>
-        <mat-divider></mat-divider>
-        <a mat-menu-item routerLink="/services">{{ 'nav.services' | t }}</a>
-        <a mat-menu-item routerLink="/entities">{{ 'nav.entities' | t }}</a>
-        <a mat-menu-item routerLink="/archive">{{ 'nav.archive' | t }}</a>
-        <a mat-menu-item routerLink="/news">{{ 'nav.news' | t }}</a>
-      </mat-menu>
-
-    </div>
+  <!-- Right Logo -->
+<div class="side-logo start">
+    <img src="assets/images/app_icon-removebg-preview.png" alt="Cairo Logo" />
   </div>
+
+  <!-- Center Content -->
+  <div class="hero-center">
+   <h1>{{ 'portalTitle' | t }}</h1>
+   <h2>{{ 'governorate' | t }}</h2>
+
+   
+  </div>
+
+  <!-- Left Logo -->
+<div class="side-logo end">  
+
+  <img src="assets/images/egypt-coat-arms-8078012-removebg-preview.png" alt="Cairo Logo" />
+
+  <div class="hero-search side-search">
+    <mat-icon>search</mat-icon>
+   <input
+  type="text"
+  [placeholder]="'searchPlaceholder' | t" />
+  </div>
+
+</div>
+
+
+</header>
 
   <!-- =====================================================
        3) DESKTOP NAV BAR
@@ -136,8 +110,7 @@
         class="menu-link menu-trigger"
         [matMenuTriggerFor]="servicesMenu"
         #servicesTrig="matMenuTrigger"
-        (mouseenter)="openMega(servicesTrig)"
-        (mouseleave)="scheduleMegaClose(servicesTrig)"
+        (click)="openMega(servicesTrig)"
         title="Services menu">
         <mat-icon class="mi">apps</mat-icon>
         <span>{{ 'nav.services' | t }}</span>
@@ -150,8 +123,7 @@
         class="menu-link menu-trigger"
         [matMenuTriggerFor]="entitiesMenu"
         #entitiesTrig="matMenuTrigger"
-        (mouseenter)="openMega(entitiesTrig)"
-        (mouseleave)="scheduleMegaClose(entitiesTrig)"
+        (click)="openMega(entitiesTrig)"
         title="Entities menu">
         <mat-icon class="mi">account_balance</mat-icon>
         <span>{{ 'nav.entities' | t }}</span>
@@ -164,8 +136,7 @@
         class="menu-link menu-trigger"
         [matMenuTriggerFor]="archiveMenu"
         #archiveTrig="matMenuTrigger"
-        (mouseenter)="openMega(archiveTrig)"
-        (mouseleave)="scheduleMegaClose(archiveTrig)"
+        (click)="openMega(archiveTrig)"
         title="Archive menu">
         <mat-icon class="mi">article</mat-icon>
         <span>{{ 'nav.archive' | t }}</span>
@@ -194,8 +165,8 @@
     [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
 
     <div class="mega"
-         (mouseenter)="clearMegaClose()"
-         (mouseleave)="scheduleMegaClose(servicesTrig)">
+         (mouseenter)="onMenuHover(true)"
+         (mouseleave)="onMenuHover(false); scheduleMegaClose(servicesTrig)">
 
       <div class="mega-top">
         <mat-icon>apps</mat-icon>

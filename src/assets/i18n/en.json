@@ -27,5 +27,8 @@
   "footer.contact": "Contact",
   "footer.phone": "Phone",
   "footer.email": "Email",
-  "footer.rights": "All rights reserved"
+  "footer.rights": "All rights reserved",
+  "portalTitle": "Electronic Portal",
+    "governorate": "Minya Governorate",
+    "searchPlaceholder": "Search the portal..."
 }

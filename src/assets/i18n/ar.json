@@ -27,5 +27,8 @@
   "footer.contact": "تواصل",
   "footer.phone": "هاتف",
   "footer.email": "بريد",
-  "footer.rights": "جميع الحقوق محفوظة"
+  "footer.rights": "جميع الحقوق محفوظة",
+  "portalTitle": "البوابة الإلكترونية",
+    "governorate": "محافظة المنيا",
+    "searchPlaceholder": "ابحث في البوابة..."
 }

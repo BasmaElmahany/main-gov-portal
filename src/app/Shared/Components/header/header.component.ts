@@ -1,4 +1,3 @@
-
 import { Component, DestroyRef, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
@@ -34,6 +33,7 @@ export class HeaderComponent {
   private megaCloseTimer: any = null;
   q = new FormControl<string>('', { nonNullable: true });
   isMenuOpen = signal(false);
+  isHoveringOverMenu = false; // Track if hovering over the menu
 
   // ✅ live clock
   now = signal(new Date());
@@ -167,13 +167,21 @@ export class HeaderComponent {
   }
 
   openMega(trig: MatMenuTrigger) {
-    this.clearMegaClose();
-    trig.openMenu();
+    if (!trig.menuOpen) { // Ensure the menu is not already open
+      this.clearMegaClose();
+      trig.openMenu();
+    }
   }
 
   scheduleMegaClose(trig: MatMenuTrigger, delay = 120) {
-    this.clearMegaClose();
-    this.megaCloseTimer = setTimeout(() => trig.closeMenu(), delay);
+    if (trig.menuOpen) { // Ensure the menu is open before scheduling close
+      this.clearMegaClose();
+      this.megaCloseTimer = setTimeout(() => {
+        if (!this.isHoveringOverMenu) { // Close only if not hovering over the menu
+          trig.closeMenu();
+        }
+      }, delay);
+    }
   }
 
   clearMegaClose() {
@@ -181,5 +189,9 @@ export class HeaderComponent {
       clearTimeout(this.megaCloseTimer);
       this.megaCloseTimer = null;
     }
+  }
+
+  onMenuHover(isHovering: boolean) {
+    this.isHoveringOverMenu = isHovering;
   }
 }

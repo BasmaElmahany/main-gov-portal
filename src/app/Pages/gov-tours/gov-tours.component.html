@@ -1,11 +1,9 @@
 <section class="gov-tours" [class.rtl]="lang.current === 'ar'">
 
-  <!-- Loading -->
   <div class="loading" *ngIf="loading">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
 
-  <!-- Tour Item -->
   <mat-card
     class="tour-row"
     *ngFor="let tour of tours"
@@ -13,24 +11,18 @@
 
     <!-- Text -->
     <div class="tour-content">
-
-      <h2 class="title">
-        {{ title(tour) }}
-      </h2>
+      <h2 class="title">{{ title(tour) }}</h2>
 
       <div class="date">
         <mat-icon>event</mat-icon>
         {{ formatDate(tour.date) }}
       </div>
 
-      <p class="excerpt">
-        {{ excerpt(tour) }}
-      </p>
+      <p class="excerpt">{{ excerpt(tour) }}</p>
 
       <button mat-raised-button color="primary" class="more-btn">
         {{ lang.current === 'ar' ? 'المزيد' : 'More' }}
       </button>
-
     </div>
 
     <!-- Image -->

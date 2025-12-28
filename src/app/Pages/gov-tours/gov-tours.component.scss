@@ -8,22 +8,21 @@ $accent: #F5C400;
   display: flex;
   flex-direction: column;
   gap: 24px;
-
-  &.rtl {
-    direction: rtl;
-  }
 }
 
-/* Row card */
+/* =========================
+   Card Row
+========================= */
 .tour-row {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  gap: 24px;
-  padding: 20px;
-  border-radius: 16px;
+  gap: 32px;
+  padding: 24px;
+  border-radius: 18px;
+  background: #fff;
   cursor: pointer;
-  transition: box-shadow .25s ease, transform .25s ease;
+  transition: transform .25s ease, box-shadow .25s ease;
 
   &:hover {
     transform: translateY(-4px);
@@ -31,7 +30,9 @@ $accent: #F5C400;
   }
 }
 
-/* Text area */
+/* =========================
+   Text Area
+========================= */
 .tour-content {
   flex: 1;
   display: flex;
@@ -40,10 +41,10 @@ $accent: #F5C400;
 }
 
 .title {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 800;
   color: $primary;
-  margin: 0 0 6px;
+  margin-bottom: 8px;
 }
 
 .date {
@@ -52,7 +53,7 @@ $accent: #F5C400;
   gap: 6px;
   font-size: 13px;
   color: #777;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
 
   mat-icon {
     font-size: 16px;
@@ -61,11 +62,11 @@ $accent: #F5C400;
 }
 
 .excerpt {
-  font-size: 14px;
-  line-height: 1.7;
+  font-size: 15px;
+  line-height: 1.75;
   color: #444;
-  margin-bottom: 14px;
-  max-width: 90%;
+  margin-bottom: 16px;
+  max-width: 92%;
 }
 
 /* Button */
@@ -75,22 +76,92 @@ $accent: #F5C400;
   font-weight: 700;
 }
 
-/* Image */
+/* =========================
+   Image
+========================= */
 .tour-image {
-  flex: 0 0 260px;
+  flex: 0 0 280px;
 
   img {
     width: 100%;
-    height: 160px;
+    height: 170px;
     object-fit: cover;
-    border-radius: 12px;
+    border-radius: 14px;
   }
 }
 
-/* RTL adjustments */
+/* =========================
+   RTL (Arabic)
+========================= */
 .gov-tours.rtl {
+  direction: rtl;
+
   .tour-row {
     flex-direction: row-reverse;
+  }
+
+  .tour-image {
+    order: 2; /* 👈 image last */
+  }
+  .tour-content {
+     order: 1; /* 👈 text first */
+    text-align: right;
+    align-items: flex-start;
+  }
+
+  .more-btn {
+    align-self: flex-start;
+  }
+  .tour-image img {
+  box-shadow: 0 14px 32px rgba(0,0,0,.18);
+}
+}
+
+/* =========================
+   LTR (English) – FORCE symmetry
+========================= */
+.gov-tours:not(.rtl) {
+  direction: ltr;
+
+  .tour-row {
+    flex-direction: row; /* 🔥 image left */
+  }
+
+  .tour-content {
+     order: 2; /* 👈 text second */
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .tour-image {
+    margin-right: 0;
+    margin-left: 0;
+     order: 1; /* 👈 image first */
+  }
+ 
+
+  .excerpt {
+    max-width: 100%;
+  }
+
+  .more-btn {
+    align-self: flex-start;
+  }
+}
+.tour-image img {
+  box-shadow: 0 14px 32px rgba(0,0,0,.18);
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 900px) {
+  .tour-row {
+    flex-direction: column-reverse !important;
+  }
+
+  .tour-image img {
+    height: 220px;
   }
 
   .excerpt {
@@ -98,18 +169,9 @@ $accent: #F5C400;
   }
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  .tour-row {
-    flex-direction: column-reverse;
-  }
-
-  .tour-image img {
-    height: 220px;
-  }
-}
-
-/* Loading */
+/* =========================
+   Loading
+========================= */
 .loading {
   display: flex;
   justify-content: center;

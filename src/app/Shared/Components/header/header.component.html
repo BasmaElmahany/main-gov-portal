@@ -85,6 +85,7 @@
   <nav class="menu-bar">
     <div class="container menu-inner" [attr.dir]="lang.dir">
 
+
       <!-- Basic links -->
       <a
         *ngFor="let item of nav"
@@ -94,6 +95,7 @@
         [routerLinkActiveOptions]="{ exact: item.path === '/home' }">
         {{ item.key | t }}
       </a>
+  
 
       <!-- <a
         *ngFor="let item of nav"

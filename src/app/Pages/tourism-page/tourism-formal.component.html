@@ -1,0 +1,144 @@
+<div [dir]="currentLanguage === 'ar' ? 'rtl' : 'ltr'" class="tourism-container">
+  <!-- Language Switcher -->
+  <div class="language-switcher">
+    <button 
+      [class.active]="currentLanguage === 'en'" 
+      (click)="switchLanguage('en')">
+      English
+    </button>
+    <button 
+      [class.active]="currentLanguage === 'ar'" 
+      (click)="switchLanguage('ar')">
+      العربية
+    </button>
+  </div>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="hero-text">
+      <h1>{{ currentLanguage === 'en' ? 'Discover Minya' : 'اكتشف منيا' }}</h1>
+      <p>{{ currentLanguage === 'en' ? 'The Bride of Upper Egypt' : 'عروس الصعيد' }}</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <!-- Introduction Section -->
+    <section class="introduction">
+      <h2>{{ currentLanguage === 'en' ? 'Welcome to Minya' : 'أهلا وسهلا بك في منيا' }}</h2>
+      <p>
+        {{ currentLanguage === 'en' 
+          ? 'Minya, often called the "Bride of Upper Egypt," is a region rich in history and culture. Spanning over 5,000 years, Minya offers a unique journey through Pharaonic, Greco-Roman, Coptic, and Islamic heritage. Explore ancient tombs, magnificent temples, and serene landscapes along the Nile River.'
+          : 'منيا، التي يطلق عليها غالباً "عروس الصعيد"، هي منطقة غنية بالتاريخ والثقافة. تمتد على مدى أكثر من 5000 سنة، وتقدم منيا رحلة فريدة عبر التراث الفرعوني واليوناني الروماني والقبطي والإسلامي. استكشف المقابر القديمة والمعابد الرائعة والمناظر الطبيعية الهادئة على طول نهر النيل.' 
+        }}
+      </p>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="filter-section">
+      <h2>{{ currentLanguage === 'en' ? 'Filter Attractions' : 'تصفية المعالم السياحية' }}</h2>
+      <div class="filter-buttons">
+        <button 
+          [class.active]="selectedCategory === 'all'"
+          (click)="onCategoryChange('all')">
+          {{ currentLanguage === 'en' ? 'All' : 'الكل' }}
+        </button>
+        <button 
+          [class.active]="selectedCategory === 'archaeological'"
+          (click)="onCategoryChange('archaeological')">
+          {{ currentLanguage === 'en' ? 'Archaeological' : 'أثري' }}
+        </button>
+        <button 
+          [class.active]="selectedCategory === 'museum'"
+          (click)="onCategoryChange('museum')">
+          {{ currentLanguage === 'en' ? 'Museums' : 'المتاحف' }}
+        </button>
+      </div>
+    </section>
+
+    <!-- Attractions Section -->
+    <section class="attractions">
+      <h2>{{ currentLanguage === 'en' ? 'Featured Attractions' : 'المعالم السياحية المميزة' }}</h2>
+      <div class="attraction-gallery">
+        <div class="attraction-card" *ngFor="let attraction of filteredAttractions">
+          <img [src]="attraction.image" [alt]="getAttractionName(attraction)">
+          <div class="attraction-info">
+            <h3>{{ getAttractionName(attraction) }}</h3>
+            <p class="period">{{ attraction.period }}</p>
+            <p class="distance">{{ attraction.distance }}</p>
+            <p class="description">{{ getAttractionDescription(attraction) }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tour Packages Section -->
+    <section class="tour-packages">
+      <h2>{{ currentLanguage === 'en' ? 'Tour Packages' : 'حزم الجولات' }}</h2>
+      <div class="packages-grid">
+        <div class="package-card" *ngFor="let tour of tourPackages">
+          <div class="package-header">
+            <h3>{{ getTourTitle(tour) }}</h3>
+            <p class="duration">{{ tour.duration }}</p>
+          </div>
+          <div class="package-body">
+            <p class="description">{{ getTourDescription(tour) }}</p>
+            <div class="package-details">
+              <span class="difficulty">{{ tour.difficulty }}</span>
+              <span class="season">{{ tour.season }}</span>
+            </div>
+            <div class="highlights">
+              <strong>{{ currentLanguage === 'en' ? 'Highlights:' : 'المميزات:' }}</strong>
+              <ul>
+                <li *ngFor="let highlight of tour.highlights">{{ highlight }}</li>
+              </ul>
+            </div>
+          </div>
+          <div class="package-footer">
+            <p class="price">{{ currentLanguage === 'en' ? 'From' : 'من' }} ${{ tour.price }} {{ currentLanguage === 'en' ? 'per person' : 'للفرد' }}</p>
+            <button class="book-btn">{{ currentLanguage === 'en' ? 'Book Now' : 'احجز الآن' }}</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Practical Info Section -->
+    <section class="practical-info">
+      <h2>{{ currentLanguage === 'en' ? 'Plan Your Visit' : 'خطط لزيارتك' }}</h2>
+      <div class="info-grid">
+        <div class="info-item">
+          <h3>{{ currentLanguage === 'en' ? 'Best Time to Visit' : 'أفضل وقت للزيارة' }}</h3>
+          <p>
+            {{ currentLanguage === 'en'
+              ? 'The ideal time to explore Minya is from October to April when the weather is pleasant and suitable for sightseeing.'
+              : 'الوقت المثالي لاستكشاف منيا هو من أكتوبر إلى أبريل عندما يكون الطقس لطيفاً ومناسباً للسياحة.'
+            }}
+          </p>
+        </div>
+        <div class="info-item">
+          <h3>{{ currentLanguage === 'en' ? 'Getting Around' : 'التنقل' }}</h3>
+          <p>
+            {{ currentLanguage === 'en'
+              ? 'Taxis and ride-sharing services are readily available. For a more authentic experience, consider a traditional felucca ride on the Nile.'
+              : 'سيارات الأجرة وخدمات مشاركة الركوب متاحة بسهولة. للحصول على تجربة أكثر أصالة، فكر في ركوب فلوكة تقليدية على النيل.'
+            }}
+          </p>
+        </div>
+        <div class="info-item">
+          <h3>{{ currentLanguage === 'en' ? 'What to Pack' : 'ماذا تحزم' }}</h3>
+          <p>
+            {{ currentLanguage === 'en'
+              ? 'Pack comfortable walking shoes, lightweight clothing, sun protection (hat, sunglasses, sunscreen), and a reusable water bottle.'
+              : 'احزم أحذية مريحة للمشي، ملابس خفيفة، حماية من الشمس (قبعة، نظارات شمسية، واقي من الشمس)، وزجاجة ماء قابلة لإعادة الاستخدام.'
+            }}
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+   >
+  </main>
+
+  <!-- Footer -->
+ 
+</div>

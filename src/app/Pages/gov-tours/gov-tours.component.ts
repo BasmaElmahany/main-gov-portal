@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { GovToursService } from '../Services/govTours/gov-tours.service';
 import { LanguageService } from '../../Shared/Services/language.service';
 import { GetGovTours } from '../Models/govtours';
@@ -16,7 +16,7 @@ import { GetGovTours } from '../Models/govtours';
     RouterModule,
     MatCardModule,
     MatIconModule,
-    MatProgressSpinnerModule],
+    MatProgressSpinnerModule,RouterModule],
   templateUrl: './gov-tours.component.html',
   styleUrl: './gov-tours.component.scss'
 })
@@ -27,7 +27,7 @@ export class GovToursComponent implements OnInit {
 
   constructor(
     private govTourService: GovToursService,
-    public lang: LanguageService
+    public lang: LanguageService,  private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -64,5 +64,12 @@ export class GovToursComponent implements OnInit {
     month: 'long',
     day: 'numeric'
   }).format(new Date(date));
+}
+
+openDetails(id: string): void {
+  this.router.navigate(
+    ['/gov-tours/details'],
+    { state: { id } }
+  );
 }
 }

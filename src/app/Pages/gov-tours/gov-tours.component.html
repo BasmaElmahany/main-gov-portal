@@ -3,11 +3,7 @@
   <div class="loading" *ngIf="loading">
     <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
   </div>
-
-  <mat-card
-    class="tour-row"
-    *ngFor="let tour of tours"
-    [routerLink]="['/gov-tours', tour.id]">
+  <mat-card class="tour-row" *ngFor="let tour of tours" (click)="openDetails(tour.id)">
 
     <!-- Text -->
     <div class="tour-content">

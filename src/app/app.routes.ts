@@ -6,7 +6,13 @@ export const routes: Routes = [
   { path: 'home', loadComponent: () => import('./Pages/home/home.component').then(m => m.HomeComponent) },
   { path: 'leaders', loadComponent: () => import('./Pages/leaders/leaders.component').then(m => m.LeadersComponent) },
   { path: 'govtours', loadComponent: () => import('./Pages/gov-tours/gov-tours.component').then(m => m.GovToursComponent) },
-  { path: 'gov-tours/:id', loadComponent: () => import('./Pages/gov-tour-details/gov-tour-details.component').then(m => m.GovTourDetailsComponent) },
+  {
+    path: 'gov-tours/details',
+    loadComponent: () =>
+      import('./Pages/gov-tour-details/gov-tour-details.component')
+        .then(m => m.GovTourDetailsComponent)
+  },
+
 
   //{ path: 'tourism', loadComponent: () => import('./pages/tourism/tourism.component').then(m => m.TourismComponent) },
   //{ path: 'investment', loadComponent: () => import('./pages/investment/investment.component').then(m => m.InvestmentComponent) },

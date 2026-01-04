@@ -1,5 +1,29 @@
 <!-- ===== Cairo-style Sections (added) ===== -->
 
+<section class="diamond-section" 
+         [style.backgroundImage]="'url(' + sliderData[activeSlideIndex].bg + ')'">
+  
+  <div class="slider-container" [dir]="lang.current === 'ar' ? 'rtl' : 'ltr'">
+    
+    <div class="diamond-wrapper">
+      <div *ngFor="let item of sliderData; let i = index" 
+           class="diamond-item"
+           [class.active]="activeSlideIndex === i"
+           (mouseenter)="setActiveSlide(i)">
+        
+        <div class="diamond-outline" [style.borderColor]="item.color"></div>
+      </div>
+    </div>
+
+    <div class="section-content">
+       <h1>{{ lang.current === 'ar' ? 'اكتشف المعالم' : 'Discover Landmarks' }}</h1>
+       <p>{{ lang.current === 'ar' ? 'وصف السيكشن الذي يتغير مع حركة الصور تلقائياً.' : 'Section description that updates automatically.' }}</p>
+    </div>
+
+  </div>
+</section>
+
+
 <section class="section highlight-row pro-highlight">
 
   <!-- LEFT: Tabs -->

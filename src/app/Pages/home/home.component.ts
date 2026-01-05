@@ -23,10 +23,10 @@ import { LanguageService } from '../../Shared/Services/language.service';
 export class HomeComponent implements OnInit, OnDestroy { // تنفيذ الواجهات
 
   sliderData = [
-    { bg: 'https://images.unsplash.com/photo-1566127444979-b3d2b654e3d7?q=80&w=1200', color: '#c5a059' },
-    { bg: 'https://egyptopia.com/shared/images/z/middle/z_qena-governorate-_3145.jpg', color: '#b11f37' },
-    { bg: 'https://thumbs.dreamstime.com/b/suez-canal-egypt-mar-cityscape-ismailia-seen-side-246647293.jpg', color: '#8fa04a' },
-    { bg: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?q=80&w=1200', color: '#2980b9' } // صورة رابعة
+    { bg: '/assets/images/nile_river.jpg', color: '#c5a059' },
+    { bg: '/assets/images/Travel_Tips.jpg', color: '#b11f37' },
+    { bg: '/assets/images/hero_banner.png', color: '#8fa04a' },
+    { bg: '/assets/images/kornish5.jpg', color: '#2980b9' } // صورة رابعة
   ];
 
   activeSlideIndex: number = 0;

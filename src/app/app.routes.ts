@@ -12,6 +12,13 @@ export const routes: Routes = [
       import('./Pages/gov-tour-details/gov-tour-details.component')
         .then(m => m.GovTourDetailsComponent)
   },
+   { path: 'directorates', loadComponent: () => import('./Pages/Directorates/Components/directorates/directorates.component').then(m => m.DirectoratesComponent) },
+  {
+    path: 'directorates/details',
+    loadComponent: () =>
+      import('./Pages/Directorates/Components/directorates-details/directorates-details.component')
+        .then(m => m.DirectoratesDetailsComponent)
+  },
 
 
   { path: 'tourism', loadComponent: () => import('./Pages/tourism-page/tourism-page.component').then(m => m.TourismFormalComponent) },

@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { DirectorateService } from './directorate.service';
+import { DirectoratesService } from './directorates.service';
 
-describe('DirectorateService', () => {
-  let service: DirectorateService;
+describe('DirectoratesService', () => {
+  let service: DirectoratesService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(DirectorateService);
+    service = TestBed.inject(DirectoratesService);
   });
 
   it('should be created', () => {

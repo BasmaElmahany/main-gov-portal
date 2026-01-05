@@ -84,7 +84,7 @@ export class HeaderComponent {
       titleKey: 'nav.entities',
       items: [
         { key: 'entities.departments', path: '/entities?type=departments', icon: 'apartment' },
-        { key: 'entities.directorates', path: '/entities?type=directorates', icon: 'account_balance' },
+        { key: 'entities.directorates', path: '/directorates', icon: 'account_balance' },
         { key: 'entities.centers', path: '/entities?type=centers', icon: 'location_city' },
         { key: 'entities.authorities', path: '/entities?type=authorities', icon: 'gavel' },
       ]

@@ -19,8 +19,6 @@ export const routes: Routes = [
       import('./Pages/Directorates/Components/directorates-details/directorates-details.component')
         .then(m => m.DirectoratesDetailsComponent)
   },
-
-
   { path: 'tourism', loadComponent: () => import('./Pages/tourism-page/tourism-page.component').then(m => m.TourismFormalComponent) },
   //{ path: 'investment', loadComponent: () => import('./pages/investment/investment.component').then(m => m.InvestmentComponent) },
   //{ path: 'services', loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent) },
@@ -33,7 +31,10 @@ export const routes: Routes = [
 
   // 13th page (optional)
   //{ path: 'news', loadComponent: () => import('./pages/news/news.component').then(m => m.NewsComponent) },
-
+  { path: 'companies', loadComponent: () => import('./Pages/company/Components/companies/companies.component').then(m => m.CompaniesComponent) },
+  {
+    path: 'companies/details',
+    loadComponent: () => import('./Pages/company/Components/companies-details/companies-details.component').then(m => m.CompaniesDetailsComponent)
+  },
   { path: '**', redirectTo: 'home' },
 ];
-``

@@ -1,0 +1,28 @@
+<section class="companies-container" [class.rtl]="lang.current === 'ar'">
+  
+  <div class="loading-overlay" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <div class="cards-list" *ngIf="!loading">
+    <mat-card class="company-row" *ngFor="let company of companies" (click)="openDetails(company.id)">
+      
+      <div class="company-image-wrapper">
+        <img [src]="cover(company)" 
+             [alt]="title(company)" 
+             onerror="this.src='assets/placeholder.jpg'">
+      </div>
+
+      <div class="company-info">
+        <h2 class="company-title">{{ title(company) }}</h2>
+        <div class="actions">
+          <button mat-flat-button color="primary" (click)="openDetails(company.id); $event.stopPropagation()">
+            {{ lang.current === 'ar' ? 'المزيد' : 'More' }}
+          </button>
+        </div>
+      </div>
+
+    </mat-card>
+  </div>
+
+</section>

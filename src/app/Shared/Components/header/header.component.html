@@ -236,6 +236,14 @@
             <span>{{ it.key | t }}</span>
           </a>
         </div>
+        <!-- Added Companies Section -->
+        <div class="mega-col">
+          <div class="mega-h">{{ lang.current === 'ar' ? 'الشركات' : 'Companies' }}</div>
+          <a class="mega-item" routerLink="/companies" (click)="entitiesTrig.closeMenu()">
+            <mat-icon>business</mat-icon>
+            <span>{{ lang.current === 'ar' ? 'الشركات' : 'Companies' }}</span>
+          </a>
+        </div>
       </div>
 
     </div>

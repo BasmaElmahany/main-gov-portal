@@ -1,4 +1,4 @@
-import { Component, DestroyRef, inject, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
@@ -14,6 +14,8 @@ import { MatMenuTrigger } from '@angular/material/menu';
 import { TranslatePipe } from '../../Pipes/translate.pipe';
 import { DataService, NewsItem } from '../../Services/data/data.service';
 import { LanguageService } from '../../Services/language.service';
+import { NewsTypes } from '../../../Pages/Models/news';
+import { NewsTypesService } from '../../../Pages/Services/newsTypes/news-types.service';
 type MegaItem = { key: string; path: string; icon: string; descKey?: string };
 
 @Component({
@@ -28,7 +30,7 @@ type MegaItem = { key: string; path: string; icon: string; descKey?: string };
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
   private destroyRef = inject(DestroyRef);
   private megaCloseTimer: any = null;
   q = new FormControl<string>('', { nonNullable: true });
@@ -37,6 +39,16 @@ export class HeaderComponent {
 
   // ✅ live clock
   now = signal(new Date());
+
+
+
+  dataSource: NewsTypes[] = [];
+
+
+  loading = true;
+
+
+
 
   // Top-level nav (keep as-is)
   nav = [
@@ -134,7 +146,7 @@ export class HeaderComponent {
   constructor(
     public lang: LanguageService,
     public data: DataService,
-    private router: Router
+    private router: Router, private typeservice: NewsTypesService,
   ) {
     const id = setInterval(() => this.now.set(new Date()), 1000);
     this.destroyRef.onDestroy(() => clearInterval(id));
@@ -193,5 +205,29 @@ export class HeaderComponent {
 
   onMenuHover(isHovering: boolean) {
     this.isHoveringOverMenu = isHovering;
+  }
+
+
+
+
+  ngOnInit(): void {
+    this.typeservice.getAllNewsTypes().subscribe({
+      next: data => {
+        this.dataSource = data;
+        this.loading = false;
+      },
+      error: () => this.loading = false
+    });
+  }
+  getNewsTypeName(type: NewsTypes): string {
+    return this.lang.current === 'ar'
+      ? type.nameAr
+      : type.nameEn;
+  }
+
+  goToNewsType(typeId: number) {
+    this.router.navigate(['/news'], {
+      queryParams: { typeId }
+    });
   }
 }

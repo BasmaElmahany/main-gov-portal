@@ -14,7 +14,7 @@ export const routes: Routes = [
   },
 
 
-  //{ path: 'tourism', loadComponent: () => import('./pages/tourism/tourism.component').then(m => m.TourismComponent) },
+  { path: 'tourism', loadComponent: () => import('./Pages/tourism-page/tourism-page.component').then(m => m.TourismFormalComponent) },
   //{ path: 'investment', loadComponent: () => import('./pages/investment/investment.component').then(m => m.InvestmentComponent) },
   //{ path: 'services', loadComponent: () => import('./pages/services/services.component').then(m => m.ServicesComponent) },
   //{ path: 'archive', loadComponent: () => import('./pages/archive/archive.component').then(m => m.ArchiveComponent) },

@@ -12,7 +12,14 @@ export const routes: Routes = [
       import('./Pages/gov-tour-details/gov-tour-details.component')
         .then(m => m.GovTourDetailsComponent)
   },
-   { path: 'directorates', loadComponent: () => import('./Pages/Directorates/Components/directorates/directorates.component').then(m => m.DirectoratesComponent) },
+  { path: 'news', loadComponent: () => import('./Pages/news/news.component').then(m => m.NewsComponent) },
+  {
+    path: 'news/details',
+    loadComponent: () =>
+      import('./Pages/news-details/news-details.component')
+        .then(m => m.NewsDetailsComponent)
+  },
+  { path: 'directorates', loadComponent: () => import('./Pages/Directorates/Components/directorates/directorates.component').then(m => m.DirectoratesComponent) },
   {
     path: 'directorates/details',
     loadComponent: () =>

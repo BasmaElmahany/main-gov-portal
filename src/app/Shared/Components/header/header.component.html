@@ -47,37 +47,36 @@
   <!-- =====================================================
        2) MAIN BAR (Brand + Search + Mobile Menu)
   ====================================================== -->
-  <header class="gov-hero-header"  style="background-color: #f3f8f8;"   [attr.dir]="lang.dir">
+  <header class="gov-hero-header" style="background-color: #f3f8f8;" [attr.dir]="lang.dir">
 
-  <!-- Right Logo -->
-<div class="side-logo start">
-    <img src="assets/images/app_icon-removebg-preview.png" style="width: 200px;height: 200px;" alt="Minya Logo" />
-  </div>
+    <!-- Right Logo -->
+    <div class="side-logo start">
+      <img src="assets/images/app_icon-removebg-preview.png" style="width: 200px;height: 200px;" alt="Minya Logo" />
+    </div>
 
-  <!-- Center Content -->
-  <div class="hero-center">
-   <h1>{{ 'portalTitle' | t }}</h1>
-   <h2>{{ 'governorate' | t }}</h2>
-
-   
-  </div>
-
-  <!-- Left Logo -->
-<div class="side-logo end">  
-
-  <img src="assets/images/egypt-coat-arms-8078012-removebg-preview.png" style="width: 200px;height: 100px; margin-top: 45px;"  alt="Cairo Logo" />
-
-  <div class="hero-search side-search">
-    <mat-icon>search</mat-icon>
-   <input
-  type="text"
-  [placeholder]="'searchPlaceholder' | t" />
-  </div>
-
-</div>
+    <!-- Center Content -->
+    <div class="hero-center">
+      <h1>{{ 'portalTitle' | t }}</h1>
+      <h2>{{ 'governorate' | t }}</h2>
 
 
-</header>
+    </div>
+
+    <!-- Left Logo -->
+    <div class="side-logo end">
+
+      <img src="assets/images/egypt-coat-arms-8078012-removebg-preview.png"
+        style="width: 200px;height: 100px; margin-top: 45px;" alt="Cairo Logo" />
+
+      <div class="hero-search side-search">
+        <mat-icon>search</mat-icon>
+        <input type="text" [placeholder]="'searchPlaceholder' | t" />
+      </div>
+
+    </div>
+
+
+  </header>
 
   <!-- =====================================================
        3) DESKTOP NAV BAR
@@ -87,15 +86,11 @@
 
 
       <!-- Basic links -->
-      <a
-        *ngFor="let item of nav"
-        class="menu-link"
-        [routerLink]="item.path"
-        routerLinkActive="active"
+      <a *ngFor="let item of nav" class="menu-link" [routerLink]="item.path" routerLinkActive="active"
         [routerLinkActiveOptions]="{ exact: item.path === '/home' }">
         {{ item.key | t }}
       </a>
-  
+
 
       <!-- <a
         *ngFor="let item of nav"
@@ -107,48 +102,36 @@
       </a> -->
 
       <!-- Services Mega Trigger -->
-      <button
-        mat-button
-        class="menu-link menu-trigger"
-        [matMenuTriggerFor]="servicesMenu"
-        #servicesTrig="matMenuTrigger"
-        (click)="openMega(servicesTrig)"
-        title="Services menu">
+      <button mat-button class="menu-link menu-trigger" [matMenuTriggerFor]="servicesMenu"
+        #servicesTrig="matMenuTrigger" (click)="openMega(servicesTrig)" title="Services menu">
         <mat-icon class="mi">apps</mat-icon>
         <span>{{ 'nav.services' | t }}</span>
         <mat-icon class="chev">expand_more</mat-icon>
       </button>
 
       <!-- Entities Mega Trigger -->
-      <button
-        mat-button
-        class="menu-link menu-trigger"
-        [matMenuTriggerFor]="entitiesMenu"
-        #entitiesTrig="matMenuTrigger"
-        (click)="openMega(entitiesTrig)"
-        title="Entities menu">
+      <button mat-button class="menu-link menu-trigger" [matMenuTriggerFor]="entitiesMenu"
+        #entitiesTrig="matMenuTrigger" (click)="openMega(entitiesTrig)" title="Entities menu">
         <mat-icon class="mi">account_balance</mat-icon>
         <span>{{ 'nav.entities' | t }}</span>
         <mat-icon class="chev">expand_more</mat-icon>
       </button>
 
       <!-- Archive Mega Trigger -->
-      <button
-        mat-button
-        class="menu-link menu-trigger"
-        [matMenuTriggerFor]="archiveMenu"
-        #archiveTrig="matMenuTrigger"
-        (click)="openMega(archiveTrig)"
-        title="Archive menu">
+      <button mat-button class="menu-link menu-trigger" [matMenuTriggerFor]="archiveMenu" #archiveTrig="matMenuTrigger"
+        (click)="openMega(archiveTrig)" title="Archive menu">
         <mat-icon class="mi">article</mat-icon>
         <span>{{ 'nav.archive' | t }}</span>
         <mat-icon class="chev">expand_more</mat-icon>
       </button>
 
-      <!-- News -->
-      <a class="menu-link" routerLink="/news" routerLinkActive="active" title="News">
-        {{ 'nav.news' | t }}
-      </a>
+      <!-- News Mega Trigger -->
+      <button mat-button class="menu-link menu-trigger" [matMenuTriggerFor]="newsMenu" #newsTrig="matMenuTrigger"
+        (mouseenter)="openMega(newsTrig)" title="News">
+        <mat-icon class="mi">newspaper</mat-icon>
+        <span>{{ 'nav.news' | t }}</span>
+        <mat-icon class="chev">expand_more</mat-icon>
+      </button>
 
     </div>
   </nav>
@@ -158,17 +141,11 @@
   ====================================================== -->
 
   <!-- SERVICES -->
-  <mat-menu
-    #servicesMenu="matMenu"
-    class="mega-panel"
-    [overlapTrigger]="false"
-    [hasBackdrop]="false"
-    yPosition="below"
+  <mat-menu #servicesMenu="matMenu" class="mega-panel" [overlapTrigger]="false" [hasBackdrop]="false" yPosition="below"
     [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
 
-    <div class="mega"
-         (mouseenter)="onMenuHover(true)"
-         (mouseleave)="onMenuHover(false); scheduleMegaClose(servicesTrig)">
+    <div class="mega" (mouseenter)="onMenuHover(true)"
+      (mouseleave)="onMenuHover(false); scheduleMegaClose(servicesTrig)">
 
       <div class="mega-top">
         <mat-icon>apps</mat-icon>
@@ -176,8 +153,8 @@
           <div class="mega-title">{{ 'nav.services' | t }}</div>
           <div class="mega-sub">
             {{ lang.current === 'ar'
-              ? 'تصنيفات وخدمات إلكترونية'
-              : 'Categories & e-services' }}
+            ? 'تصنيفات وخدمات إلكترونية'
+            : 'Categories & e-services' }}
           </div>
         </div>
       </div>
@@ -185,11 +162,7 @@
       <div class="mega-grid">
         <div class="mega-col" *ngFor="let col of servicesMega">
           <div class="mega-h">{{ col.titleKey | t }}</div>
-          <a
-            class="mega-item"
-            *ngFor="let it of col.items"
-            [routerLink]="it.path"
-            (click)="servicesTrig.closeMenu()">
+          <a class="mega-item" *ngFor="let it of col.items" [routerLink]="it.path" (click)="servicesTrig.closeMenu()">
             <mat-icon>{{ it.icon }}</mat-icon>
             <span>{{ it.key | t }}</span>
           </a>
@@ -200,17 +173,10 @@
   </mat-menu>
 
   <!-- ENTITIES -->
-  <mat-menu
-    #entitiesMenu="matMenu"
-    class="mega-panel"
-    [overlapTrigger]="false"
-    [hasBackdrop]="false"
-    yPosition="below"
+  <mat-menu #entitiesMenu="matMenu" class="mega-panel" [overlapTrigger]="false" [hasBackdrop]="false" yPosition="below"
     [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
 
-    <div class="mega"
-         (mouseenter)="clearMegaClose()"
-         (mouseleave)="scheduleMegaClose(entitiesTrig)">
+    <div class="mega" (mouseenter)="clearMegaClose()" (mouseleave)="scheduleMegaClose(entitiesTrig)">
 
       <div class="mega-top">
         <mat-icon>account_balance</mat-icon>
@@ -218,8 +184,8 @@
           <div class="mega-title">{{ 'nav.entities' | t }}</div>
           <div class="mega-sub">
             {{ lang.current === 'ar'
-              ? 'الجهات والإدارات والهيئات'
-              : 'Departments & authorities' }}
+            ? 'الجهات والإدارات والهيئات'
+            : 'Departments & authorities' }}
           </div>
         </div>
       </div>
@@ -227,11 +193,7 @@
       <div class="mega-grid">
         <div class="mega-col" *ngFor="let col of entitiesMega">
           <div class="mega-h">{{ col.titleKey | t }}</div>
-          <a
-            class="mega-item"
-            *ngFor="let it of col.items"
-            [routerLink]="it.path"
-            (click)="entitiesTrig.closeMenu()">
+          <a class="mega-item" *ngFor="let it of col.items" [routerLink]="it.path" (click)="entitiesTrig.closeMenu()">
             <mat-icon>{{ it.icon }}</mat-icon>
             <span>{{ it.key | t }}</span>
           </a>
@@ -250,17 +212,10 @@
   </mat-menu>
 
   <!-- ARCHIVE -->
-  <mat-menu
-    #archiveMenu="matMenu"
-    class="mega-panel"
-    [overlapTrigger]="false"
-    [hasBackdrop]="false"
-    yPosition="below"
+  <mat-menu #archiveMenu="matMenu" class="mega-panel" [overlapTrigger]="false" [hasBackdrop]="false" yPosition="below"
     [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
 
-    <div class="mega"
-         (mouseenter)="clearMegaClose()"
-         (mouseleave)="scheduleMegaClose(archiveTrig)">
+    <div class="mega" (mouseenter)="clearMegaClose()" (mouseleave)="scheduleMegaClose(archiveTrig)">
 
       <div class="mega-top">
         <mat-icon>article</mat-icon>
@@ -268,8 +223,8 @@
           <div class="mega-title">{{ 'nav.archive' | t }}</div>
           <div class="mega-sub">
             {{ lang.current === 'ar'
-              ? 'أخبار، إعلانات، وثائق ووسائط'
-              : 'News, announcements, documents & media' }}
+            ? 'أخبار، إعلانات، وثائق ووسائط'
+            : 'News, announcements, documents & media' }}
           </div>
         </div>
       </div>
@@ -277,11 +232,7 @@
       <div class="mega-grid">
         <div class="mega-col" *ngFor="let col of archiveMega">
           <div class="mega-h">{{ col.titleKey | t }}</div>
-          <a
-            class="mega-item"
-            *ngFor="let it of col.items"
-            [routerLink]="it.path"
-            (click)="archiveTrig.closeMenu()">
+          <a class="mega-item" *ngFor="let it of col.items" [routerLink]="it.path" (click)="archiveTrig.closeMenu()">
             <mat-icon>{{ it.icon }}</mat-icon>
             <span>{{ it.key | t }}</span>
           </a>
@@ -290,6 +241,55 @@
 
     </div>
   </mat-menu>
+
+  <!-- NEWS -->
+  <mat-menu #newsMenu="matMenu" class="mega-panel" [overlapTrigger]="false" [hasBackdrop]="false" yPosition="below"
+    [xPosition]="langDir === 'rtl' ? 'before' : 'after'">
+
+    <div class="mega" (mouseenter)="clearMegaClose()" (mouseleave)="scheduleMegaClose(newsTrig)">
+
+      <!-- ===== TOP HEADER (same as archive) ===== -->
+      <div class="mega-top">
+        <mat-icon>newspaper</mat-icon>
+        <div>
+          <div class="mega-title">
+            {{ 'nav.news' | t }}
+          </div>
+          <div class="mega-sub">
+            {{ lang.current === 'ar'
+            ? 'أنواع الأخبار والتصنيفات'
+            : 'News categories & classifications' }}
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== GRID ===== -->
+      <div class="mega-grid">
+
+        <!-- Single column (can expand later) -->
+        <div class="mega-col">
+          <div class="mega-h">
+            {{ 'nav.news' | t }}
+          </div>
+
+          <a class="mega-item" *ngFor="let type of dataSource" (click)="goToNewsType(type.id); newsTrig.closeMenu()">
+
+            <mat-icon>label</mat-icon>
+            <span>{{ getNewsTypeName(type) }}</span>
+          </a>
+
+          <!-- Empty state -->
+          <div class="mega-empty" *ngIf="!dataSource.length">
+            {{ 'common.noData' | t }}
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+  </mat-menu>
+
+
 
   <!-- =====================================================
        5) NEWS TICKER
@@ -304,19 +304,11 @@
 
       <div class="ticker-track">
         <div class="ticker-move">
-          <a
-            class="ticker-item"
-            *ngFor="let n of tickerItems"
-            routerLink="/archive"
-            [title]="tickerText(n)">
+          <a class="ticker-item" *ngFor="let n of tickerItems" routerLink="/archive" [title]="tickerText(n)">
             {{ tickerText(n) }}
           </a>
           <!-- duplicated for seamless scroll -->
-          <a
-            class="ticker-item"
-            *ngFor="let n of tickerItems"
-            routerLink="/archive"
-            [title]="tickerText(n)">
+          <a class="ticker-item" *ngFor="let n of tickerItems" routerLink="/archive" [title]="tickerText(n)">
             {{ tickerText(n) }}
           </a>
         </div>

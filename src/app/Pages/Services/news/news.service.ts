@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 })
 export class NewsService {
 
-   private readonly apiUrl = `${baseAPI}/News`;
+  private readonly apiUrl = `${baseAPI}/News`;
 
   constructor(private http: HttpClient) { }
 
@@ -21,5 +21,12 @@ export class NewsService {
   // -------------------- GET BY ID --------------------
   getById(id: string): Observable<ApiResponse<GetNews>> {
     return this.http.get<ApiResponse<GetNews>>(`${this.apiUrl}/${id}`);
+  }
+
+  // -------------------- GET BY TypeID --------------------
+  getByTypeId(typeId: number): Observable<ApiResponse<GetNews[]>> {
+    return this.http.get<ApiResponse<GetNews[]>>(
+      `${this.apiUrl}/by-type/${typeId}`
+    );
   }
 }

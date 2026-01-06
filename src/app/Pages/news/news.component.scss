@@ -177,3 +177,8 @@ $accent: #F5C400;
   justify-content: center;
   padding: 40px;
 }
+.news-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 20px;
+}

@@ -7,6 +7,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { GetNews } from '../Models/news';
 import { NewsService } from '../Services/news/news.service';
 import { LanguageService } from '../../Shared/Services/language.service';
+import { NewsSidebarComponent } from '../news-sidebar/news-sidebar.component';
 
 @Component({
   selector: 'app-news',
@@ -15,7 +16,7 @@ import { LanguageService } from '../../Shared/Services/language.service';
     RouterModule,
     MatCardModule,
     MatIconModule,
-    MatProgressSpinnerModule, RouterModule],
+    MatProgressSpinnerModule, RouterModule,NewsSidebarComponent],
   templateUrl: './news.component.html',
   styleUrl: './news.component.scss'
 })

@@ -1,1 +1,34 @@
-<p>news-sidebar works!</p>
+<aside class="news-sidebar" [class.rtl]="lang.dir === 'rtl'">
+
+  <!-- Header -->
+  <div class="sidebar-header">
+    <mat-icon>newspaper</mat-icon>
+    <h3>{{ lang.current === 'ar' ? 'تصنيفات الأخبار' : 'News Categories' }}</h3>
+  </div>
+
+  <!-- Loader -->
+  <div class="sidebar-loading" *ngIf="loading">
+    <mat-icon class="spin">autorenew</mat-icon>
+  </div>
+
+  <!-- Types -->
+  <ul class="type-list" *ngIf="!loading && types.length">
+
+    <li
+      class="type-item"
+      *ngFor="let type of types"
+      [class.active]="type.id === activeTypeId"
+      (click)="goToType(type.id)"
+    >
+      <mat-icon>label</mat-icon>
+      <span>{{ getTypeName(type) }}</span>
+    </li>
+
+  </ul>
+
+  <!-- Empty -->
+  <div class="sidebar-empty" *ngIf="!loading && !types.length">
+    {{ lang.current === 'ar' ? 'لا توجد تصنيفات' : 'No categories found' }}
+  </div>
+
+</aside>

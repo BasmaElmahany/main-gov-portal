@@ -1,0 +1,125 @@
+/* =========================================================
+   CSS VARIABLES (Formal Color Scheme)
+========================================================= */
+:host {
+  --gov-primary: #1a3a52;
+  --gov-accent: #0066cc;
+  --gov-ink: #2c3e50;
+  --gov-muted: #7f8c8d;
+  --gov-border: #d4d9e3;
+  --gov-soft: #f5f7fa;
+  --gov-shadow: rgba(26, 58, 82, 0.08);
+  --gov-shadow-lg: rgba(26, 58, 82, 0.12);
+  --gov-success: #27ae60;
+  --gov-white: #ffffff;
+    display: block;
+}
+
+
+:host {
+  display: block;
+}
+
+/* Sidebar container */
+.news-sidebar {
+  background: var(--gov-white);
+  border: 1px solid var(--gov-border);
+  border-radius: 10px;
+  box-shadow: 0 6px 18px var(--gov-shadow);
+  padding: 14px;
+  min-width: 260px;
+
+  &.rtl {
+    direction: rtl;
+    text-align: right;
+  }
+}
+
+/* Header */
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+  border-bottom: 2px solid var(--gov-border);
+
+  mat-icon {
+    color: var(--gov-accent);
+  }
+
+  h3 {
+    font-size: 14px;
+    font-weight: 800;
+    margin: 0;
+    color: var(--gov-ink);
+  }
+}
+
+/* Loading */
+.sidebar-loading {
+  display: flex;
+  justify-content: center;
+  padding: 24px;
+
+  .spin {
+    animation: spin 1s linear infinite;
+    color: var(--gov-accent);
+  }
+}
+
+/* List */
+.type-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Item */
+.type-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gov-ink);
+  transition: all 0.2s ease;
+
+  mat-icon {
+    font-size: 18px;
+    color: var(--gov-accent);
+  }
+
+  &:hover {
+    background: var(--gov-soft);
+    transform: translateX(4px);
+  }
+
+  &.active {
+    background: linear-gradient(
+      135deg,
+      rgba(0, 102, 204, 0.12),
+      rgba(0, 102, 204, 0.05)
+    );
+    color: var(--gov-accent);
+    box-shadow: inset 0 0 0 1px rgba(0, 102, 204, 0.35);
+  }
+}
+
+/* Empty */
+.sidebar-empty {
+  padding: 18px;
+  font-size: 13px;
+  color: var(--gov-muted);
+  text-align: center;
+}
+
+/* Animation */
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}

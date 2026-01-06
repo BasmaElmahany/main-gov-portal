@@ -1,1 +1,75 @@
-<p>directorates works!</p>
+<!-- Creative & Innovative Directorate Listing Component -->
+<div *ngIf="!loading" class="directorates-container">
+  <!-- Masonry-style Grid with Creative Layout -->
+  <div class="directorates-masonry">
+    <mat-card 
+      *ngFor="let directorate of directorates; let i = index" 
+      class="directorate-card"
+      [ngClass]="'card-size-' + ((i % 3) + 1)">
+      
+      <!-- Creative Image Section with Overlay -->
+      <div class="card-image-container">
+        <img 
+          mat-card-image 
+          [src]="cover(directorate)" 
+          [alt]="title(directorate)"
+          class="directorate-image"
+          loading="lazy">
+        
+        <!-- Gradient Overlay with Animation -->
+        <div class="image-overlay-gradient"></div>
+        
+        <!-- Badge/Tag Section -->
+        <div class="card-badge">
+          <span class="badge-text">{{ lang.current === 'ar' ? 'الديريكتوريت' : 'Directorate' }}</span>
+        </div>
+      </div>
+
+      <!-- Creative Content Section -->
+      <div class="card-content-wrapper">
+        <!-- Title with Accent Line -->
+        <div class="title-section">
+          <div class="accent-line"></div>
+          <mat-card-title class="directorate-title">
+            {{ title(directorate) }}
+          </mat-card-title>
+        </div>
+
+        <!-- Description with Icon -->
+        <mat-card-content class="card-description-section">
+          <p class="directorate-description">
+            {{ excerpt(directorate) }}
+          </p>
+        </mat-card-content>
+
+        <!-- Creative Action Button -->
+        <mat-card-actions class="card-actions-creative">
+          <button 
+            mat-raised-button 
+            color="primary" 
+            (click)="openDetails(directorate.id)"
+            class="creative-action-button">
+            <span class="button-label">
+              {{ lang.current === 'ar' ? 'استكشف المزيد' : 'Explore More' }}
+            </span>
+            <mat-icon class="button-icon">arrow_forward</mat-icon>
+          </button>
+        </mat-card-actions>
+      </div>
+
+      <!-- Decorative Corner Element -->
+      <div class="corner-decoration top-left"></div>
+      <div class="corner-decoration bottom-right"></div>
+    </mat-card>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="loading" class="loading-state-creative">
+  <div class="loading-spinner-wrapper">
+    <mat-spinner diameter="60"></mat-spinner>
+    <p class="loading-text">
+      {{ lang.current === 'ar' ? 'جاري التحميل...' : 'Loading...' }}
+    </p>
+  </div>
+</div>

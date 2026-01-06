@@ -2,6 +2,10 @@ export interface Directorate {
   id: string;
   nameAr: string;
   nameEn: string;
+  titleAr?: string;
+  titleEn?: string;
+  descriptionAr?: string;
+  descriptionEn?: string;
   dirNameAr?: string;
   dirNameEn?: string;
   addressAr?: string;

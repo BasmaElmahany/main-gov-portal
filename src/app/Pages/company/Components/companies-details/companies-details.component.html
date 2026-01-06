@@ -1,0 +1,73 @@
+<section class="details-page" [class.rtl]="lang.current === 'ar'">
+  <div class="loading-overlay" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+
+  <div class="content-wrapper" *ngIf="!loading && company">
+    
+    <header class="page-header">
+      <h1 class="main-title">{{ title() }}</h1>
+      <div class="meta-info">
+        <div class="info-item" *ngIf="company.phoneNumber1">
+          <mat-icon>phone</mat-icon>
+          <span>{{ company.phoneNumber1 }}</span>
+        </div>
+        <div class="info-item" *ngIf="company.email">
+          <mat-icon>email</mat-icon>
+          <span>{{ company.email }}</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="details-card">
+      <div class="main-image-container">
+        <img [src]="imageUrl(company.photoUrl)" 
+             [alt]="title()" 
+             onerror="this.src='https://via.placeholder.com/800x400'">
+      </div>
+
+      <div class="details-body">
+        <div class="section">
+          <h3 class="section-title">
+            <mat-icon>location_on</mat-icon>
+            {{ lang.current === 'ar' ? 'الموقع والعنوان' : 'Location & Address' }}
+          </h3>
+          <p class="description-text">{{ address() }}</p>
+        </div>
+
+        <div class="section" *ngIf="company.dirNameAr || company.dirNameEn">
+          <h3 class="section-title">
+            <mat-icon>person</mat-icon>
+            {{ lang.current === 'ar' ? 'المدير المسؤول' : 'Managing Director' }}
+          </h3>
+          <p class="description-text">
+            {{ lang.current === 'ar' ? company.dirNameAr : company.dirNameEn }}
+          </p>
+        </div>
+
+        <div class="grid-sections">
+          <div class="sub-section" *ngIf="company.activities?.length">
+            <h3 class="section-title">{{ lang.current === 'ar' ? 'الأنشطة' : 'Activities' }}</h3>
+            <ul class="styled-list">
+              <li *ngFor="let act of company.activities">{{ act }}</li>
+            </ul>
+          </div>
+
+          <div class="sub-section" *ngIf="company.services?.length">
+            <h3 class="section-title">{{ lang.current === 'ar' ? 'الخدمات' : 'Services' }}</h3>
+            <ul class="styled-list">
+              <li *ngFor="let svc of company.services">{{ svc }}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="actions-footer" *ngIf="company.link">
+          <a [href]="company.link" target="_blank" class="visit-btn">
+            {{ lang.current === 'ar' ? 'زيارة الموقع الرسمي' : 'Visit Official Website' }}
+            <mat-icon>open_in_new</mat-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,1 +1,27 @@
-<p>directorates-details works!</p>
+<div *ngIf="loading" class="loading">
+  <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+</div>
+
+<div *ngIf="!loading && directorate" class="gov-tour-details" [class.rtl]="lang.current === 'ar'">
+  <header>
+    <h1>{{ title() }}</h1>
+    
+    <div class="date" *ngIf="directorate.phoneNumber1">
+      <mat-icon>phone</mat-icon>
+      <span>{{ directorate.phoneNumber1 }}</span>
+    </div>
+  </header>
+
+  <article>
+    {{ description() }}
+  </article>
+
+  <div class="gallery">
+    <img *ngIf="directorate.photoUrl" [src]="imageUrl(directorate.photoUrl)" [alt]="title()">
+    <img *ngIf="directorate.dirPhotoUrl" [src]="imageUrl(directorate.dirPhotoUrl)" [alt]="title()">
+  </div>
+</div>
+
+<div *ngIf="!loading && !directorate" class="loading">
+  <p>لم يتم العثور على البيانات.</p>
+</div>

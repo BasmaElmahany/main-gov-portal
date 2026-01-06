@@ -40,7 +40,14 @@ export class LeadersComponent implements OnInit {
 
     this.leaderService.getLeaders().subscribe({
       next: res => {
-        this.leaders = res.data ?? [];
+        const list = res.data ?? [];
+
+        // 🔥 SORT BY OFFICIAL HIERARCHY
+        this.leaders = list.sort(
+          (a, b) =>
+            this.getPositionRank(a) - this.getPositionRank(b)
+        );
+
         this.loading = false;
       },
       error: err => {
@@ -97,5 +104,35 @@ export class LeadersComponent implements OnInit {
     const end = new Date(l.endDate!).toLocaleDateString(locale);
     return `${start} – ${end}`;
   }
+  private readonly positionPriority: { keywords: string[]; rank: number }[] = [
+    {
+      rank: 1,
+      keywords: ['محافظ', 'Governor']
+    },
+    {
+      rank: 2,
+      keywords: ['نائب المحافظ', 'Deputy Governor']
+    },
+    {
+      rank: 3,
+      keywords: ['سكرتير عام', 'Secretary-General of Minya Governorate']
+    },
+    {
+      rank: 4,
+      keywords: ['سكرتير عام مساعد', 'Assistant Secretary-General of Minya Governorate']
+    }
+  ];
+
+ private getPositionRank(leader: Leader): number {
+  const en = (leader.positionEn ?? '').toLowerCase();
+  const ar = (leader.positionAr ?? '').toLowerCase();
+
+  if (en === 'governor' || ar === 'محافظ') return 1;
+  if (en === 'deputy governor' || ar === 'نائب المحافظ') return 2;
+  if (en === 'secretary-general of minya governorate' || ar.includes('سكرتير عام') && !ar.includes('مساعد')) return 3;
+  if (en === 'assistant secretary-general of minya governorate' || ar.includes('سكرتير عام مساعد')) return 4;
+
+  return 999;
+}
 
 }

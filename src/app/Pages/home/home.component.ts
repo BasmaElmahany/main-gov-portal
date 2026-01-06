@@ -5,10 +5,28 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatIconModule } from '@angular/material/icon';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { TranslatePipe } from '../../Shared/Pipes/translate.pipe';
 import { DataService } from '../../Shared/Services/data/data.service';
 import { LanguageService } from '../../Shared/Services/language.service';
+import { GetNews, NewsTypes } from '../Models/news';
+import { NewsService } from '../Services/news/news.service';
+import { NewsTypesService } from '../Services/newsTypes/news-types.service';
+import { forkJoin } from 'rxjs';
+import { GetGovTours } from '../Models/govtours';
+import { GovToursService } from '../Services/govTours/gov-tours.service';
+
+type NewsSection = {
+  typeId: number;
+  typeName: { ar: string; en: string };
+  major: GetNews;
+  list: GetNews[];
+};
+
+type GovTourSection = {
+  major: GetGovTours;
+  list: GetGovTours[];
+};
 
 @Component({
   selector: 'app-home',
@@ -20,6 +38,7 @@ import { LanguageService } from '../../Shared/Services/language.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
+
 export class HomeComponent implements OnInit, OnDestroy { // تنفيذ الواجهات
 
   sliderData = [
@@ -32,10 +51,49 @@ export class HomeComponent implements OnInit, OnDestroy { // تنفيذ الوا
   activeSlideIndex: number = 0;
   autoPlayInterval: any;
 
-  constructor(public data: DataService, public lang: LanguageService) { }
+  newsByType: NewsSection[] = [];
+  newsTypes: NewsTypes[] = [];
+  news: GetNews[] = [];
+
+
+  govToursSection?: GovTourSection;
+  constructor(public data: DataService, public lang: LanguageService, public router: Router, private newsService: NewsService,
+    private typesService: NewsTypesService, private govToursService: GovToursService) { }
 
   ngOnInit(): void {
     this.startAutoPlay();
+    //retrieve gov tours
+    this.govToursService.getAll().subscribe({
+      next: res => {
+        const items = (res.data ?? [])
+          .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
+        if (items.length) {
+          this.govToursSection = {
+            major: items[0],
+            list: items.slice(1, 4)
+          };
+        }
+      }
+    });
+
+
+    // Retrieve news and types simultaneously
+    forkJoin({
+      types: this.typesService.getAllNewsTypes(), // returns NewsTypes[]
+      news: this.newsService.getAll()             // returns ApiResponse<GetNews[]>
+    }).subscribe({
+      next: ({ types, news }) => {
+        this.newsTypes = types ?? [];
+        this.news = news.data ?? [];
+        this.buildNewsSections();
+      },
+      error: () => {
+        this.newsTypes = [];
+        this.news = [];
+        this.newsByType = [];
+      }
+    });
   }
 
   ngOnDestroy(): void {
@@ -54,41 +112,35 @@ export class HomeComponent implements OnInit, OnDestroy { // تنفيذ الوا
     }
   }
 
+  private buildNewsSections(): void {
+    const types = this.newsTypes;
+    const news = this.news;
+
+    this.newsByType = types
+      .map((type): NewsSection | null => {
+        const items = news
+          .filter(n => n.typeId === type.id)
+          .sort((a, b) => +new Date(b.date) - +new Date(a.date));
+
+        if (!items.length) return null;
+
+        return {
+          typeId: type.id,
+          typeName: { ar: type.nameAr, en: type.nameEn },
+          major: items[0],
+          list: items.slice(1, 3)
+        };
+      })
+      .filter((x): x is NewsSection => x !== null);
+  }
+
   setActiveSlide(index: number) {
     this.activeSlideIndex = index;
-    this.stopAutoPlay(); // إعادة ضبط التوقيت عند الاختيار اليدوي
+    this.stopAutoPlay();
     this.startAutoPlay();
   }
 
-  // --- باقي كود المصفوفات الأصلي دون أي حذف ---
-  adsImages = ['/assets/images/gettyimages-519020152-170667a.jpg', '/assets/sections/ad-2.jpg', '/assets/sections/ad-3.jpg'];
-  toursImages = ['/assets/images/gettyimages-519020152-170667a.jpg', '/assets/sections/tour-2.jpg', '/assets/sections/tour-3.jpg'];
-  miscLinks = [
-    { path: '/about', label: 'nav.about' }, { path: '/tourism', label: 'nav.tourism' },
-    { path: '/entities', label: 'nav.entities' }, { path: '/services', label: 'nav.services' },
-    { path: '/archive', label: 'nav.archive' }
-  ];
-  newLinks = [
-    { path: '/services', label: 'nav.services' }, { path: '/archive', label: 'nav.archive' },
-    { path: '/leaders', label: 'nav.leaders' }, { path: '/contact', label: 'nav.contact' }
-  ];
-  monthItems = [
-    {
-      img: '/assets/images/gettyimages-519020152-170667a.jpg',
-      date: this.lang.current === 'ar' ? '09 ديسمبر 2025' : 'Dec 09, 2025',
-      title: { ar: 'افتتاح مشروع خدمي جديد', en: 'Opening a new service project' }
-    },
-    {
-      img: '/assets/sections/month-2.jpg',
-      date: this.lang.current === 'ar' ? '11 ديسمبر 2025' : 'Dec 11, 2025',
-      title: { ar: 'حملة ميدانية لمتابعة الانضباط', en: 'Field campaign to ensure compliance' }
-    },
-    {
-      img: '/assets/sections/month-3.jpg',
-      date: this.lang.current === 'ar' ? '15 ديسمبر 2025' : 'Dec 15, 2025',
-      title: { ar: 'اجتماع تنسيقي لملفات الخدمات', en: 'Coordination meeting on services' }
-    }
-  ];
+
   todayISO = new Date().toISOString();
   text(localized: { ar: string; en: string }) { return this.lang.current === 'ar' ? localized.ar : localized.en; }
   iconForService(category: string) {
@@ -100,5 +152,45 @@ export class HomeComponent implements OnInit, OnDestroy { // تنفيذ الوا
       case 'utilities': return 'account_balance';
       default: return 'public';
     }
+  }
+
+
+  newsTitle(n: GetNews): string {
+    return this.lang.current === 'ar' ? n.titleAr : n.titleEn;
+  }
+
+  newsExcerpt(n: GetNews, limit: number): string {
+    const text = this.lang.current === 'ar' ? n.articleAr : n.articleEn;
+    return text.length > limit ? text.slice(0, limit) + '…' : text;
+  }
+
+  govToursExcerpt(n: GetGovTours, limit: number): string {
+    const text = this.lang.current === 'ar' ? n.articleAr : n.articleEn;
+    return text.length > limit ? text.slice(0, limit) + '…' : text;
+  }
+  cover(n: GetNews): string {
+    return n.photos?.length
+      ? 'https://shusha.minya.gov.eg:93' + n.photos[0].photoUrl
+      : '/assets/placeholder.jpg';
+  }
+
+  openNewsDetails(id: string): void {
+    this.router.navigate(['/news/details'], { state: { id } });
+  }
+
+  formatDate(date: string): string {
+    const locale = this.lang.current === 'ar' ? 'ar-EG' : 'en-US';
+
+    return new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    }).format(new Date(date));
+  }
+  openGovToursDetails(id: string): void {
+    this.router.navigate(
+      ['/gov-tours/details'],
+      { state: { id } }
+    );
   }
 }

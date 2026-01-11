@@ -1,0 +1,33 @@
+<section class="agencies-container" [class.rtl]="lang.current === 'ar'">
+  <div class="cards-list" *ngIf="!loading">
+    
+    <mat-card class="agency-card" *ngFor="let agency of agencies; let i = index" (click)="openDetails(agency.id)">
+      <div class="card-layout">
+        
+        <div class="logo-area">
+          <img [src]="cover(agency)" [alt]="title(agency)" (error)="handleImageError($event, agency)">
+        </div>
+
+        <div class="info-area">
+          <h2 class="title">{{ title(agency) }}</h2>
+          <p class="excerpt" *ngIf="excerpt(agency)">{{ excerpt(agency) }}</p>
+          
+          <div class="actions">
+            <button class="details-btn" (click)="openDetails(agency.id)">
+              {{ lang.current === 'ar' ? 'المزيد' : 'More' }}
+              <mat-icon>{{ lang.current === 'ar' ? 'chevron_left' : 'chevron_right' }}</mat-icon>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </mat-card>
+
+  </div>
+</section>
+
+<ng-template #loadingTemplate>
+  <div class="loading-spinner">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+</ng-template>

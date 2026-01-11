@@ -1,0 +1,94 @@
+/* Container for the agencies section */
+.agencies-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Cards list layout */
+.cards-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Individual agency card */
+.agency-card {
+  display: flex;
+  flex-direction: column;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+  cursor: pointer;
+}
+
+.agency-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Card layout */
+.card-layout {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Logo area */
+.logo-area {
+  background-color: #f9f9f9;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.logo-area img {
+  max-width: 100%;
+  max-height: 150px;
+  object-fit: contain;
+}
+
+/* Info area */
+.info-area {
+  padding: 15px;
+  background-color: #fff;
+}
+
+.info-area .title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.info-area .excerpt {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+/* Actions */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.details-btn {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: background-color 0.2s;
+}
+
+.details-btn:hover {
+  background-color: #0056b3;
+}

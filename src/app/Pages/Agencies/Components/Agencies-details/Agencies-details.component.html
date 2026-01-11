@@ -1,0 +1,37 @@
+<section class="agency-details" *ngIf="!loading && agency">
+  <header>
+   <img 
+  *ngIf="agency"
+  [src]="cover(agency)" 
+  [alt]="title(agency)" 
+  (error)="handleImageError($event, agency)" 
+  class="agency-image">
+    <h1>{{ title(agency) }}</h1>
+  </header>
+
+  <div class="details">
+    <p *ngIf="agency.addressAr || agency.addressEn">
+      <strong>{{ lang.current === 'ar' ? 'العنوان' : 'Address' }}:</strong>
+      {{ lang.current === 'ar' ? agency.addressAr : agency.addressEn }}
+    </p>
+    
+    <p *ngIf="agency.phoneNumber1">
+      <strong>{{ lang.current === 'ar' ? 'الهاتف' : 'Phone' }}:</strong>
+      <a [href]="'tel:' + agency.phoneNumber1">{{ agency.phoneNumber1 }}</a>
+    </p>
+    
+    <p *ngIf="agency.email">
+      <strong>{{ lang.current === 'ar' ? 'البريد الإلكتروني' : 'Email' }}:</strong>
+      <a [href]="'mailto:' + agency.email">{{ agency.email }}</a>
+    </p>
+    
+    <button mat-raised-button color="primary" (click)="goBack()" class="mt-4">
+      <mat-icon>arrow_back</mat-icon>
+      {{ lang.current === 'ar' ? 'عودة' : 'Back' }}
+    </button>
+  </div>
+</section>
+
+<div *ngIf="loading" class="loading-spinner">
+  <mat-progress-spinner mode="indeterminate" diameter="50"></mat-progress-spinner>
+</div>

@@ -1,94 +1,191 @@
-/* Container for the agencies section */
-.agencies-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-}
-
-/* Cards list layout */
-.cards-list {
+.explorer-wrapper {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
-}
-
-/* Individual agency card */
-.agency-card {
-  display: flex;
-  flex-direction: column;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s, box-shadow 0.2s;
-  cursor: pointer;
-}
-
-.agency-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Card layout */
-.card-layout {
-  display: flex;
-  flex-direction: column;
-}
-
-/* Logo area */
-.logo-area {
-  background-color: #f9f9f9;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  grid-template-columns: 350px 1fr; /* تقسيم الصفحة لجزء قائمة وجزء عرض */
+  gap: 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  height: 600px;
+  background: #fff;
+  border-radius: 30px;
   padding: 20px;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.05);
 }
 
-.logo-area img {
-  max-width: 100%;
-  max-height: 150px;
-  object-fit: contain;
+/* القائمة الجانبية */
+.agencies-nav {
+  overflow-y: auto;
+  padding-right: 15px;
 }
 
-/* Info area */
-.info-area {
-  padding: 15px;
-  background-color: #fff;
-}
-
-.info-area .title {
-  font-size: 1.2rem;
-  font-weight: bold;
+.nav-item {
+  padding: 20px;
   margin-bottom: 10px;
-}
-
-.info-area .excerpt {
-  font-size: 0.9rem;
-  color: #666;
-  margin-bottom: 15px;
-}
-
-/* Actions */
-.actions {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.details-btn {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 0.9rem;
+  border-radius: 15px;
   display: flex;
   align-items: center;
-  gap: 5px;
-  transition: background-color 0.2s;
+  gap: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
 }
 
-.details-btn:hover {
-  background-color: #0056b3;
+.nav-item:hover, .nav-item.active {
+  background: #f0f7ff;
+  border-color: #0056b3;
+  transform: translateX(-10px); /* حركة لليمين في العربي */
+}
+
+.nav-number {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #0056b3;
+  opacity: 0.5;
+}
+
+.nav-title {
+  font-weight: 600;
+  flex: 1;
+  color: #333;
+}
+
+/* منصة العرض */
+.stage-area {
+  background: #fafbfc;
+  border-radius: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.stage-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px;
+  animation: slideUp 0.5s ease-out; /* أنيميشن ظهور */
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.main-logo-big {
+  width: 200px;
+  height: 200px;
+  object-fit: contain;
+  z-index: 2;
+  filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1));
+}
+
+.accent-circle {
+  position: absolute;
+  top: 50px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(0,86,179,0.05) 0%, transparent 70%);
+  border-radius: 50%;
+}
+
+.stage-title {
+  font-size: 2.5rem;
+  margin-top: 20px;
+  color: #0056b3;
+}
+
+.prime-btn {
+  background: #0056b3;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 50px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 30px;
+  transition: 0.3s;
+}
+
+.prime-btn:hover {
+  box-shadow: 0 10px 20px rgba(0,86,179,0.3);
+  transform: scale(1.05);
+}
+.explorer-wrapper {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  gap: 20px; 
+  max-width: 1300px;
+  height: 550px; 
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 15px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.08);
+}
+
+/* القائمة الجانبية */
+.agencies-nav {
+  overflow-y: auto;
+  padding-left: 10px;
+  
+ 
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #e0e0e0;
+    border-radius: 10px;
+  }
+}
+
+.nav-item {
+  padding: 12px 15px; 
+  margin-bottom: 8px;
+  border-radius: 12px;
+  background: #f8fafc; 
+  border: 1px solid #edf2f7;
+  
+  &:hover, &.active {
+    background: #e0f2fe; 
+    border-color: #0ea5e9;
+    transform: translateX(-5px); 
+    
+    .nav-title { color: #0369a1; }
+    .nav-icon { color: #0ea5e9; transform: scale(1.1); }
+  }
+}
+
+.nav-icon {
+  font-size: 20px;
+  color: #94a3b8;
+  transition: all 0.3s ease;
+}
+
+.nav-title {
+  font-size: 0.95rem; 
+  font-weight: 600;
+  color: #475569;
+}
+
+/* منصة العرض (Stage) */
+.stage-area {
+  padding: 20px;
+  background: radial-gradient(circle at top right, #f0f9ff, #ffffff);
+}
+
+.main-logo-big {
+  width: 160px; 
+  height: 160px;
+}
+
+.stage-title {
+  font-size: 2rem; 
+  margin: 15px 0;
+}
+
+.stage-excerpt {
+  max-width: 500px;
+  font-size: 0.9rem;
 }

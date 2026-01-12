@@ -65,69 +65,38 @@
 
   <!-- Directorate Grid/List -->
   <div [class]="viewMode === 'grid' ? 'directorate-grid' : 'directorate-list'">
-    <mat-card 
-      *ngFor="let directorate of paginatedDirectorates; let i = index" 
-      class="directorate-card"
-      [attr.data-index]="i">
-      
-      <!-- Image Section -->
-      <div class="card-image-section">
-        <div class="image-wrapper">
-          <img 
-            [src]="cover(directorate)" 
-            [alt]="title(directorate)"
-            loading="lazy"
-            class="directorate-image"
-            (error)="onImageError($event, directorate)">
-          
-          <!-- Image Overlay -->
-          <div class="image-overlay"></div>
-          
-          <!-- Badge -->
-          <div class="directorate-badge">
-            <span class="badge-text">{{ lang.current === 'ar' ? 'مديرية' : 'Directorate' }}</span>
-          </div>
+   <mat-card 
+  *ngFor="let directorate of paginatedDirectorates; let i = index" 
+  class="directorate-card"
+  [attr.data-index]="i">
+  
+  <div class="card-inner-wrapper"> <div class="card-image-section">
+      <div class="image-wrapper">
+        <img [src]="cover(directorate)" class="directorate-image" (error)="onImageError($event, directorate)">
+        <div class="image-overlay"></div>
+        <div class="directorate-badge">
+          <span class="badge-text">{{ lang.current === 'ar' ? 'مديرية' : 'Directorate' }}</span>
         </div>
       </div>
+    </div>
 
-      <!-- Content Section -->
-      <div class="card-content">
-        <!-- Header -->
-        <div class="card-header">
-          <div class="header-line"></div>
-          <h3 class="directorate-name">
-            {{ title(directorate) }}
-          </h3>
-          <div class="header-ornament">
-            <span>●</span>
-          </div>
-        </div>
-
-        <!-- Description -->
-        <div class="card-description">
-          
-        </div>
-
-        <!-- Action Button -->
-        <div class="card-actions">
-          <button 
-            mat-button 
-            (click)="openDetails(directorate.id)"
-            class="action-button">
-            <span class="button-text">{{ lang.current === 'ar' ? 'استكشف المزيد' : 'Explore More' }}</span>
-            <span class="button-icon">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </span>
-          </button>
-        </div>
+    <div class="card-content">
+      <div class="card-header">
+        <h3 class="directorate-name">{{ title(directorate) }}</h3>
+        <div class="header-line"></div>
       </div>
 
-      <!-- Decorative Elements -->
-      <div class="decorative-corner top-right"></div>
-      <div class="decorative-corner bottom-left"></div>
-    </mat-card>
+      <div class="card-actions">
+        <button mat-button (click)="openDetails(directorate.id)" class="action-button">
+          <span class="button-text">{{ lang.current === 'ar' ? 'استكشف المزيد' : 'Explore More' }}</span>
+          <mat-icon class="button-icon">arrow_back</mat-icon> </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="decorative-corner top-right"></div>
+  <div class="decorative-corner bottom-left"></div>
+</mat-card>
   </div>
 
   <!-- No Results Message -->

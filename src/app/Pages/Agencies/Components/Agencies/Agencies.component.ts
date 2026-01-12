@@ -26,6 +26,8 @@ import { Agency } from '../../Models/Agencies';
 export class AgenciesComponent implements OnInit {
   loading = true;
   agencies: Agency[] = [];
+  // السطر المضاف لربط التصميم الجديد
+  selectedAgency: Agency | null = null;
 
   constructor(
     private agenciesService: AgenciesService,
@@ -38,6 +40,10 @@ export class AgenciesComponent implements OnInit {
       next: (res) => {
         this.agencies = res;
         this.loading = false;
+        // تعيين أول عنصر ليعمل الـ Explorer فور التحميل
+        if (this.agencies.length > 0) {
+          this.selectedAgency = this.agencies[0];
+        }
         console.log('Agencies data:', res);
       },
       error: () => (this.loading = false)

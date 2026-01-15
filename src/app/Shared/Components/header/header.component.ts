@@ -98,6 +98,8 @@ export class HeaderComponent implements OnInit {
         { key: 'entities.departments', path: '/entities?type=departments', icon: 'apartment' },
         { key: 'entities.directorates', path: '/directorates', icon: 'account_balance' },
         { key: 'entities.centers', path: '/entities?type=centers', icon: 'location_city' },
+        { key: 'entities.culturecenters', path: '/culturecenters', icon: 'theaters' },
+        { key: 'entities.socialsocieties', path: '/socialsocieties', icon: 'diversity_3' },
         { key: 'entities.authorities', path: '/entities?type=authorities', icon: 'gavel' },
       ]
     },

@@ -1,0 +1,72 @@
+<!-- Social Society Details Page -->
+<div *ngIf="!loading && socialSociety" class="socialsociety-details-container" [class.rtl]="lang.current === 'ar'">
+  <div class="details-header">
+    <button mat-icon-button (click)="goBack()" class="back-btn" title="{{ lang.current === 'ar' ? 'رجوع' : 'Back' }}">
+      <mat-icon>arrow_back</mat-icon>
+    </button>
+    <h1 class="details-title">{{ title() }}</h1>
+  </div>
+
+  <div class="details-content">
+    <div class="details-image-section">
+      <img [src]="imageUrl(socialSociety.photoUrl)" (error)="handleImageError($event)" class="details-image" alt="{{ title() }}">
+    </div>
+    <div class="details-info-section">
+      <div class="info-row" *ngIf="socialSociety.dirNameAr || socialSociety.dirNameEn">
+        <span class="info-label">{{ lang.current === 'ar' ? 'اسم المدير' : 'Director Name' }}:</span>
+        <span class="info-value">{{ lang.current === 'ar' ? socialSociety.dirNameAr : socialSociety.dirNameEn }}</span>
+      </div>
+      <div class="info-row" *ngIf="socialSociety.addressAr || socialSociety.addressEn">
+        <span class="info-label">{{ lang.current === 'ar' ? 'العنوان' : 'Address' }}:</span>
+        <span class="info-value">{{ lang.current === 'ar' ? socialSociety.addressAr : socialSociety.addressEn }}</span>
+      </div>
+      <div class="info-row" *ngIf="socialSociety.phoneNumber1">
+        <span class="info-label">{{ lang.current === 'ar' ? 'هاتف 1' : 'Phone 1' }}:</span>
+        <a class="info-value link" href="tel:{{ socialSociety.phoneNumber1 }}">{{ socialSociety.phoneNumber1 }}</a>
+      </div>
+      <div class="info-row" *ngIf="socialSociety.phoneNumber2">
+        <span class="info-label">{{ lang.current === 'ar' ? 'هاتف 2' : 'Phone 2' }}:</span>
+        <a class="info-value link" href="tel:{{ socialSociety.phoneNumber2 }}">{{ socialSociety.phoneNumber2 }}</a>
+      </div>
+      <div class="info-row" *ngIf="socialSociety.email">
+        <span class="info-label">{{ lang.current === 'ar' ? 'البريد الإلكتروني' : 'Email' }}:</span>
+        <a class="info-value link" href="mailto:{{ socialSociety.email }}">{{ socialSociety.email }}</a>
+      </div>
+      <div class="info-row" *ngIf="socialSociety.faxNumber">
+        <span class="info-label">{{ lang.current === 'ar' ? 'فاكس' : 'Fax' }}:</span>
+        <span class="info-value">{{ socialSociety.faxNumber }}</span>
+      </div>
+      <div class="info-row" *ngIf="socialSociety.link">
+        <span class="info-label">{{ lang.current === 'ar' ? 'رابط خارجي' : 'External Link' }}:</span>
+        <a class="info-value link" href="{{ socialSociety.link }}" target="_blank">{{ socialSociety.link }}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activities Section -->
+  <div class="details-section" *ngIf="socialSociety.activities && socialSociety.activities.length">
+    <h2 class="section-title">{{ lang.current === 'ar' ? 'الأنشطة' : 'Activities' }}</h2>
+    <ul class="section-list">
+      <li *ngFor="let act of socialSociety.activities">{{ act }}</li>
+    </ul>
+  </div>
+
+  <!-- Services Section -->
+  <div class="details-section" *ngIf="socialSociety.services && socialSociety.services.length">
+    <h2 class="section-title">{{ lang.current === 'ar' ? 'الخدمات' : 'Services' }}</h2>
+    <ul class="section-list">
+      <li *ngFor="let srv of socialSociety.services">{{ srv }}</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Loading State -->
+<div *ngIf="loading" class="loading-state">
+  <mat-spinner></mat-spinner>
+</div>
+
+<!-- No Data State -->
+<div *ngIf="!loading && !socialSociety" class="no-data-state">
+  <mat-icon>info</mat-icon>
+  <span>{{ lang.current === 'ar' ? 'لا توجد بيانات' : 'No data available' }}</span>
+</div>

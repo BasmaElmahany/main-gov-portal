@@ -1,0 +1,102 @@
+<footer class="gov-footer">
+  <!-- Top strip (like official portals) -->
+  <div class="footer-strip">
+    <div class="container strip-inner">
+      <div class="strip-title">
+        {{ 'portal.title' | t }}
+      </div>
+
+      <div class="strip-links">
+        <a routerLink="/services">{{ 'nav.services' | t }}</a>
+        <a routerLink="/archive">{{ 'nav.archive' | t }}</a>
+        <a routerLink="/contact">{{ 'nav.contact' | t }}</a>
+        <a routerLink="/about">{{ 'nav.about' | t }}</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main footer -->
+  <div class="container footer-main">
+    <div class="col about">
+      <div class="h">{{ 'footer.about' | t }}</div>
+      <div class="p">{{ 'footer.aboutText' | t }}</div>
+
+      <div class="meta">
+        <div class="meta-item">
+          <mat-icon aria-hidden="true">location_on</mat-icon>
+          <span>{{ (langDir === 'rtl') ? 'مقر ديوان المحافظة' : 'Governorate HQ' }}</span>
+        </div>
+        <div class="meta-item">
+          <mat-icon aria-hidden="true">schedule</mat-icon>
+          <span>{{ (langDir === 'rtl') ? 'الأحد - الخميس: 9 ص - 3 م' : 'Sun–Thu: 9AM – 3PM' }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="col links">
+      <div class="h">{{ 'footer.links' | t }}</div>
+      <ul class="list">
+        <li><a routerLink="/services">{{ 'nav.services' | t }}</a></li>
+        <li><a routerLink="/leaders">{{ 'nav.leaders' | t }}</a></li>
+        <li><a routerLink="/entities">{{ 'nav.entities' | t }}</a></li>
+        <li><a routerLink="/tourism">{{ 'nav.tourism' | t }}</a></li>
+        <li><a routerLink="/investment">{{ 'nav.investment' | t }}</a></li>
+      </ul>
+    </div>
+
+    <div class="col links">
+      <div class="h">{{ (langDir === 'rtl') ? 'روابط مهمة' : 'Important Links' }}</div>
+      <ul class="list">
+        <li><a routerLink="/health">{{ (langDir === 'rtl') ? 'الصحة' : 'Health' }}</a></li>
+        <li><a routerLink="/education">{{ (langDir === 'rtl') ? 'التعليم' : 'Education' }}</a></li>
+        <li><a routerLink="/social-services">{{ (langDir === 'rtl') ? 'الخدمات الاجتماعية' : 'Social Services' }}</a></li>
+        <li><a routerLink="/archive">{{ (langDir === 'rtl') ? 'الأخبار والوثائق' : 'News & Documents' }}</a></li>
+      </ul>
+    </div>
+
+    <div class="col contact">
+      <div class="h">{{ 'footer.contact' | t }}</div>
+
+      <div class="contact-item">
+        <mat-icon aria-hidden="true">call</mat-icon>
+        <div>
+          <div class="label">{{ 'footer.phone' | t }}</div>
+          <div class="value">012-345-6789</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <mat-icon aria-hidden="true">mail</mat-icon>
+        <div>
+          <div class="label">{{ 'footer.email' | t }}</div>
+          <div class="value">info-gov.local</div>
+        </div>
+      </div>
+
+      <div class="contact-item">
+        <mat-icon aria-hidden="true">support_agent</mat-icon>
+        <div>
+          <div class="label">{{ (langDir === 'rtl') ? 'الشكاوى والمقترحات' : 'Complaints & Suggestions' }}</div>
+          <div class="value">{{ (langDir === 'rtl') ? 'متاح عبر صفحة التواصل' : 'Available via Contact page' }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom legal bar -->
+  <div class="footer-bottom">
+    <div class="container bottom-inner">
+      <div class="rights">
+        © {{ 'footer.rights' | t }}
+      </div>
+
+      <div class="bottom-links">
+        <a href="#" rel="nofollow">{{ (langDir === 'rtl') ? 'سياسة الخصوصية' : 'Privacy Policy' }}</a>
+        <span class="sep">|</span>
+        <a href="#" rel="nofollow">{{ (langDir === 'rtl') ? 'شروط الاستخدام' : 'Terms of Use' }}</a>
+        <span class="sep">|</span>
+        <a routerLink="/contact">{{ (langDir === 'rtl') ? 'الدعم' : 'Support' }}</a>
+      </div>
+    </div>
+  </div>
+</footer>

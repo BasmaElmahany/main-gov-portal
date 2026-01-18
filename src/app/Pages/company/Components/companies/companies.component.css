@@ -1,0 +1,115 @@
+.companies-management {
+  max-width: 1200px;
+  margin: 30px auto;
+  padding: 0 20px;
+  &.rtl { direction: rtl; }
+}
+
+/* صندوق الرأس */
+.table-header-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px 25px;
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background: #f1f5f9;
+    padding: 8px 15px;
+    border-radius: 10px;
+    width: 300px;
+    mat-icon { font-size: 20px; color: #64748b; margin-left: 8px; }
+    input { border: none; background: transparent; outline: none; width: 100%; font-size: 0.9rem; }
+  }
+
+  .count-badge {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+  }
+}
+
+/* القائمة الحديثة */
+.modern-list {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+}
+
+.list-item-row {
+  display: grid;
+  grid-template-columns: 50px 80px 1fr 120px 60px;
+  align-items: center;
+  padding: 15px 25px;
+  border-bottom: 1px solid #f1f5f9;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:last-child { border-bottom: none; }
+
+  &:hover {
+    background: #f8fbff;
+    transform: scale(1.005);
+    .view-more-btn { background: #5c59b3; color: white; transform: translateX(-5px); }
+    .company-name { color: #5c59b3; }
+  }
+}
+
+/* تنسيق الخلايا */
+.index-cell { color: #cbd5e1; font-weight: 700; font-size: 0.9rem; }
+
+.img-frame {
+  width: 55px; height: 55px;
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img { max-width: 100%; max-height: 100%; object-fit: contain; }
+}
+
+.info-cell {
+  padding: 0 20px;
+  .company-name { margin: 0; font-size: 1.1rem; color: #1e293b; font-weight: 700; }
+  .company-desc { margin: 4px 0 0; color: #64748b; font-size: 0.85rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 500px; }
+}
+
+.status-pill {
+  padding: 4px 12px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  &.active { background: #dcfce7; color: #166534; }
+}
+
+.view-more-btn {
+  width: 35px; height: 35px;
+  border-radius: 50%;
+  border: none;
+  background: #f1f5f9;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  mat-icon { font-size: 18px; width: 18px; height: 18px; }
+}
+
+/* التجاوب */
+@media (max-width: 850px) {
+  .list-item-row {
+    grid-template-columns: 60px 1fr 60px;
+    .index-cell, .status-cell { display: none; }
+  }
+}

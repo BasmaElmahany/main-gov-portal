@@ -1,0 +1,106 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$main-gov-portal-primary: mat.define-palette(mat.$indigo-palette);
+$main-gov-portal-accent: mat.define-palette(mat.$pink-palette, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$main-gov-portal-warn: mat.define-palette(mat.$red-palette);
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as "color" or "typography".
+$main-gov-portal-theme: mat.define-light-theme((
+  color: (
+    primary: $main-gov-portal-primary,
+    accent: $main-gov-portal-accent,
+    warn: $main-gov-portal-warn,
+  ),
+  typography: mat.define-typography-config(),
+  density: 0
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($main-gov-portal-theme);
+
+/* You can add global styles to this file, and also import other style files */
+:root {
+  --gov-bg: #f4f6f9;
+  --gov-ink: #102a43;
+  --gov-muted: #52606d;
+  --gov-border: #e5e7eb;
+
+  /* Cairo-like governmental palette (adjust if you want) */
+  --gov-primary: #1f5aa6;   /* civic blue */
+  --gov-accent:  #0f766e;   /* teal/green */
+  --gov-soft:    #eef4ff;   /* soft blue background blocks */
+
+  --gov-shadow: 0 10px 22px rgba(16, 42, 67, .08);
+}
+
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+   background: var(--gov-bg);
+   color: var(--gov-ink);
+  font-family: Roboto, "Cairo", sans-serif;
+  overflow-x: hidden;
+}
+
+.glass {
+  background: var(--glass);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-soft);
+  backdrop-filter: blur(16px);
+}
+
+.page-title {
+  font-size: clamp(22px, 2.2vw, 32px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin: 0 0 14px;
+}
+
+.subtle {
+  opacity: .82;
+}
+
+.orb-layer::before,
+.orb-layer::after {
+  content: "";
+  position: fixed;
+  inset: -200px;
+  pointer-events: none;
+  z-index: -1;
+  background:
+    radial-gradient(300px 280px at 20% 20%, rgba(74,222,128,.18), transparent 60%),
+    radial-gradient(380px 320px at 80% 25%, rgba(6,182,212,.14), transparent 60%),
+    radial-gradient(260px 240px at 70% 80%, rgba(74,222,128,.10), transparent 60%);
+  animation: drift 12s ease-in-out infinite alternate;
+  filter: blur(2px);
+}
+.mdc-text-field--outlined {
+  background: #fff;
+}
+
+
+@keyframes drift {
+  from { transform: translate3d(-8px, -6px, 0) scale(1); opacity: .9; }
+  to   { transform: translate3d(10px, 8px, 0) scale(1.03); opacity: 1; }
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

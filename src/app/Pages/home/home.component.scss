@@ -1,0 +1,493 @@
+/* =========================================================
+   HOME PAGE (Updated + Professional)
+   Keeps your same gov tokens (primary/ink/border/soft/shadow)
+========================================================= */
+$primary: #002D62;
+$accent: #F5C400;
+
+
+
+
+/* =========================================================
+   DIAMOND SECTION - FULL WIDTH (No Margins)
+========================================================= */
+
+:host {
+  display: block;
+  width: 100%;
+}
+
+.diamond-section {
+  // استخدام تقنية الـ Viewport Width لفرض العرض الكامل
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  // الطول والمظهر
+  min-height: 550px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin-top: -18px; // لإلغاء الـ padding العلوي الموجود في :host إذا لزم الأمر
+  padding: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  transition: background-image 1.2s ease-in-out;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.35); // طبقة تعتيم لتوضيح العناصر فوق الصورة
+    z-index: 1;
+  }
+}
+
+.slider-container {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 100%;
+  padding: 0 5%; // مسافة أمان داخلية بسيطة جداً
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  // التحكم في اتجاه العناصر (النص في جهة والمربعات في جهة)
+  flex-direction: row-reverse;
+}
+
+/* =========================================================
+   DIAMOND ELEMENTS (Hollow Look)
+========================================================= */
+
+.diamond-wrapper {
+  display: flex;
+  gap: 25px;
+}
+
+.diamond-item {
+  width: 125px;
+  height: 125px;
+  position: relative;
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+
+  .diamond-outline {
+    width: 100%;
+    height: 100%;
+    border: 4px solid; // اللون يأخذ من الـ TS عبر [style.borderColor]
+    transform: rotate(45deg);
+    background: transparent;
+    transition: all 0.4s ease;
+  }
+
+  &.active {
+    transform: scale(1.3);
+    z-index: 5;
+
+    .diamond-outline {
+      border-width: 8px;
+      box-shadow: 0 0 30px currentColor;
+      background: rgba(255, 255, 255, 0.1);
+    }
+  }
+
+  // توزيع الـ Zig-Zag للأربع مربعات
+  &:nth-child(odd) {
+    transform: translateY(-35px);
+  }
+
+  &:nth-child(even) {
+    transform: translateY(45px);
+  }
+}
+
+.section-content {
+  color: white;
+  max-width: 500px;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.6);
+
+  h1 {
+    font-size: clamp(28px, 4vw, 48px);
+    font-weight: 900;
+    margin-bottom: 15px;
+  }
+
+  p {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    opacity: 0.95;
+  }
+}
+
+
+/* ===============================
+   GOV TOURS – HOME SECTION
+================================ */
+$primary: #002D62;
+$accent: #F5C400;
+.govtours-home {
+  max-width: 900px;
+ margin: 0px 0px;
+  padding: 0px;
+}
+
+.govtours-grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 22px;
+}
+
+/* ===== MAJOR ===== */
+.govtour-major {
+  position: relative;
+  height: 320px;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg,
+        rgba(0, 0, 0, .15),
+        rgba(0, 0, 0, .65));
+    padding: 24px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
+    .badge {
+      align-self: flex-start;
+      background: $accent;
+      color: #000;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    h3 {
+      font-size: 21px;
+      font-weight: 900;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: .95;
+    }
+  }
+}
+
+/* ===== LIST ===== */
+.govtour-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.govtour-item {
+  display: flex;
+  gap: 12px;
+  background: #fff;
+  border-radius: 14px;
+  padding: 10px;
+  border-left: 4px solid $primary;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: 0 10px 22px rgba(0, 0, 0, .12);
+  }
+
+  .thumb {
+    width: 96px;
+    height: 70px;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+  }
+
+  .info {
+    h4 {
+      font-size: 14px;
+      font-weight: 800;
+      color: $primary;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+
+    .date {
+      font-size: 12px;
+      color: #777;
+      font-weight: 600;
+    }
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .govtours-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .govtour-major {
+    height: 240px;
+  }
+}
+
+$primary: #002D62;
+$accent: #F5C400;
+
+.home-news {
+  max-width: 900px;
+  margin: 0px 0px;
+  padding: 0px;
+}
+
+.news-type-section {
+  margin-bottom: 60px;
+}
+
+/* ===== HEADER ===== */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  margin-right: 10px;
+
+  h2 {
+    font-size: 22px;
+    font-weight: 800;
+    color: $primary;
+    position: relative;
+    margin-left: 20px;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 50px;
+      height: 3px;
+      background: $accent;
+      margin-top: 6px;
+    }
+  }
+
+  .more-link {
+    font-size: 14px;
+    font-weight: 600;
+    color: $primary;
+    text-decoration: none;
+
+    &:hover {
+      color: $accent;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ===== GRID ===== */
+.news-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 20px;
+}
+
+/* ===== MAJOR ===== */
+.major-news {
+  position: relative;
+  height: 300px;
+  border-radius: 18px;
+  overflow: hidden;
+  cursor: pointer;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, .65), rgba(0, 0, 0, .15));
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    color: #fff;
+
+    h3 {
+      font-size: 20px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    p {
+      font-size: 14px;
+      line-height: 1.6;
+      opacity: .95;
+    }
+  }
+}
+
+/* ===== SIDE LIST ===== */
+.side-news {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.side-item {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border-left: 4px solid $accent;
+  cursor: pointer;
+  transition: transform .2s ease, box-shadow .2s ease;
+
+  &:hover {
+    transform: translateX(4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+  }
+
+  h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: $primary;
+    margin-bottom: 4px;
+  }
+
+  p {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.6;
+  }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 900px) {
+  .news-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .major-news {
+    height: 240px;
+  }
+}
+// تعريف المتغيرات في البداية لتجنب الخطأ السابق
+$primary: #002D62;
+$accent: #F5C400;
+
+.hero-flex-container {
+  display: flex;
+  flex-direction: row; // لجعلهم بجانب بعض
+  align-items: stretch;
+  width: 100%;
+  min-height: 600px;
+  background: #fdfdfd;
+  gap: 10px; // مسافة بسيطة بين السكشنين
+}
+
+.diamond-side {
+  flex: 1; // سيأخذ نصف المساحة تقريباً
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px; // لجعل الحواف متناسقة مع الصور في الأخبار
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+  }
+}
+
+.news-side {
+  flex: 1.2; // سيأخذ مساحة أكبر قليلاً ليناسب تفاصيل الأخبار
+  padding: 20px;
+  overflow-y: auto; // للسماح بالتمرير إذا كانت الأخبار كثيرة
+}
+
+/* لضمان التوافق مع الشاشات الصغيرة (الموبايل) يرجعوا تحت بعض */
+@media (max-width: 992px) {
+  .hero-flex-container {
+    flex-direction: column;
+  }
+  .diamond-side {
+    height: 350px;
+    width: 100%;
+  }
+}
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-top: 10px;
+  border-bottom: 2px solid #f0f0f0; // خط خفيف تحت العنوان
+  padding-bottom: 10px;
+  margin-right: 20px;
+
+  h2 {
+    font-size: 22px !important;
+    font-weight: 800 !important;
+    color: $primary;
+    margin: 0;
+    position: relative;
+
+    // إضافة الخط الأصفر المميز تحت العنوان
+    &::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      background: $accent;
+      margin-top: 8px;
+      border-radius: 2px;
+    }
+  }
+
+  .more-link {
+    background: #f8f9fa; // خلفية خفيفة للزر
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    color: $primary;
+    transition: all 0.3s ease;
+
+    &:hover {
+      background: $accent;
+      color: #000;
+      text-decoration: none;
+    }
+  }
+}

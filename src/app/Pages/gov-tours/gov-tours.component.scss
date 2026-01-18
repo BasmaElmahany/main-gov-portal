@@ -1,0 +1,179 @@
+$primary: #002D62;
+$accent: #F5C400;
+
+.gov-tours {
+  max-width: 1200px;
+  margin: auto;
+  padding: 32px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* =========================
+   Card Row
+========================= */
+.tour-row {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 24px;
+  border-radius: 18px;
+  background: #fff;
+  cursor: pointer;
+  transition: transform .25s ease, box-shadow .25s ease;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(0,0,0,.15);
+  }
+}
+
+/* =========================
+   Text Area
+========================= */
+.tour-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.title {
+  font-size: 20px;
+  font-weight: 800;
+  color: $primary;
+  margin-bottom: 8px;
+}
+
+.date {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 12px;
+
+  mat-icon {
+    font-size: 16px;
+    color: $accent;
+  }
+}
+
+.excerpt {
+  font-size: 15px;
+  line-height: 1.75;
+  color: #444;
+  margin-bottom: 16px;
+  max-width: 92%;
+}
+
+/* Button */
+.more-btn {
+  width: fit-content;
+  border-radius: 10px;
+  font-weight: 700;
+}
+
+/* =========================
+   Image
+========================= */
+.tour-image {
+  flex: 0 0 280px;
+
+  img {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 14px;
+  }
+}
+
+/* =========================
+   RTL (Arabic)
+========================= */
+.gov-tours.rtl {
+  direction: rtl;
+
+  .tour-row {
+    flex-direction: row-reverse;
+  }
+
+  .tour-image {
+    order: 2; /* 👈 image last */
+  }
+  .tour-content {
+     order: 1; /* 👈 text first */
+    text-align: right;
+    align-items: flex-start;
+  }
+
+  .more-btn {
+    align-self: flex-start;
+  }
+  .tour-image img {
+  box-shadow: 0 14px 32px rgba(0,0,0,.18);
+}
+}
+
+/* =========================
+   LTR (English) – FORCE symmetry
+========================= */
+.gov-tours:not(.rtl) {
+  direction: ltr;
+
+  .tour-row {
+    flex-direction: row; /* 🔥 image left */
+  }
+
+  .tour-content {
+     order: 2; /* 👈 text second */
+    text-align: left;
+    align-items: flex-start;
+  }
+
+  .tour-image {
+    margin-right: 0;
+    margin-left: 0;
+     order: 1; /* 👈 image first */
+  }
+ 
+
+  .excerpt {
+    max-width: 100%;
+  }
+
+  .more-btn {
+    align-self: flex-start;
+  }
+}
+.tour-image img {
+  box-shadow: 0 14px 32px rgba(0,0,0,.18);
+}
+
+/* =========================
+   Responsive
+========================= */
+@media (max-width: 900px) {
+  .tour-row {
+    flex-direction: column-reverse !important;
+  }
+
+  .tour-image img {
+    height: 220px;
+  }
+
+  .excerpt {
+    max-width: 100%;
+  }
+}
+
+/* =========================
+   Loading
+========================= */
+.loading {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}

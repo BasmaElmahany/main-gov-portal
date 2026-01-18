@@ -1,0 +1,30 @@
+<section class="leader-profile" [class.rtl]="lang.current === 'ar'">
+
+  <!-- Image -->
+  <div class="leader-image">
+    <img [src]="photo()" alt="Leader photo">
+  </div>
+
+  <!-- Biography -->
+  <div class="leader-bio">
+
+    <h1 class="leader-name">
+      {{ text(leader.nameAr, leader.nameEn) }}
+    </h1>
+
+    <h3 class="leader-position">
+      {{ text(leader.positionAr, leader.positionEn) }}
+    </h3>
+
+    <p class="leader-period">
+      <mat-icon>event</mat-icon>
+      {{ period() }}
+    </p>
+
+    <div class="leader-text">
+      {{ text(leader.cvDataAr, leader.cvDataEn) }}
+    </div>
+
+  </div>
+
+</section>

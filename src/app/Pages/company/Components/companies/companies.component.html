@@ -1,0 +1,45 @@
+<section class="companies-management" [class.rtl]="lang.current === 'ar'">
+  
+  <div class="table-header-box">
+    <div class="search-bar">
+      <mat-icon>search</mat-icon>
+      <input type="text" [placeholder]="lang.current === 'ar' ? 'ابحث عن شركة...' : 'Search for a company...'">
+    </div>
+    <div class="count-badge">
+      {{ companies.length }} {{ lang.current === 'ar' ? 'شركة مسجلة' : 'Registered Companies' }}
+    </div>
+  </div>
+
+  <div class="modern-list" *ngIf="!loading">
+    <div class="list-item-row" *ngFor="let company of companies; let i = index" (click)="openDetails(company.id)">
+      
+      <div class="index-cell">{{ i + 1 }}</div>
+      
+      <div class="logo-cell">
+        <div class="img-frame">
+          <img [src]="cover(company)" [alt]="title(company)" (error)="handleImageError($event, company)">
+        </div>
+      </div>
+
+      <div class="info-cell">
+        <h3 class="company-name">{{ title(company) }}</h3>
+        <p class="company-desc">{{ excerpt(company) }}</p>
+      </div>
+
+      <div class="status-cell">
+        <span class="status-pill active">{{ lang.current === 'ar' ? 'نشط' : 'Active' }}</span>
+      </div>
+
+      <div class="action-cell">
+        <button class="view-more-btn">
+          <mat-icon>{{ lang.current === 'ar' ? 'arrow_back' : 'arrow_forward' }}</mat-icon>
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <div *ngIf="loading" class="loading-area">
+    <mat-spinner diameter="40"></mat-spinner>
+  </div>
+</section>

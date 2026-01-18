@@ -1,0 +1,924 @@
+/* =========================================================
+   GOV HEADER – Professional Design with Formal Colors
+   
+   Color Palette:
+   - Primary: #1a3a52 (Deep Navy Blue)
+   - Accent: #0066cc (Professional Blue)
+   - Text: #2c3e50 (Dark Slate)
+   - Borders: #d4d9e3 (Light Gray)
+   - Background: #f5f7fa (Off White)
+   - Success: #27ae60 (Professional Green)
+   
+========================================================= */
+
+/* =========================================================
+   CSS VARIABLES (Formal Color Scheme)
+========================================================= */
+:host {
+  --gov-primary: #1a3a52;
+  --gov-accent: #0066cc;
+  --gov-ink: #2c3e50;
+  --gov-muted: #7f8c8d;
+  --gov-border: #d4d9e3;
+  --gov-soft: #f5f7fa;
+  --gov-shadow: rgba(26, 58, 82, 0.08);
+  --gov-shadow-lg: rgba(26, 58, 82, 0.12);
+  --gov-success: #27ae60;
+  --gov-white: #ffffff;
+
+  display: block;
+}
+
+/* =========================================================
+   HOST & BASE
+========================================================= */
+.container {
+  max-width: 1220px;
+  margin-inline: auto;
+  padding-inline: 16px;
+}
+
+/* =========================================================
+   HEADER WRAPPER
+========================================================= */
+.gov-header {
+  position: sticky;
+  top: 0;
+  z-index: 1200;
+  background: var(--gov-white);
+  border-bottom: 1px solid var(--gov-border);
+  box-shadow: 0 2px 8px var(--gov-shadow);
+}
+
+/* =========================================================
+   1) UTILITY BAR – Professional Top Strip
+========================================================= */
+.utility-bar {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--gov-primary) 0%, #2d5a7b 100%);
+  color: var(--gov-white);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Subtle shine effect */
+.utility-bar::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(120deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 35%,
+      transparent 70%);
+  transform: translateX(-120%);
+  animation: shine 8s ease-in-out infinite;
+}
+
+.utility-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding-block: 10px;
+  position: relative;
+  z-index: 1;
+}
+
+.utility-left,
+.utility-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* Utility Links */
+.u-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.u-link::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: rgba(255, 255, 255, 0.12);
+  opacity: 0;
+  transform: scale(0.95);
+  transition: all 0.2s ease;
+}
+
+.u-link:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.u-link:hover::before {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.u-link mat-icon {
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  line-height: 16px;
+}
+
+/* Separator dots */
+.dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  margin-inline: 4px;
+}
+
+/* Material Buttons */
+.lang-btn,
+.acc-btn {
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  color: var(--gov-white) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  font-size: 12px !important;
+  transition: all 0.2s ease !important;
+}
+
+.lang-btn:hover,
+.acc-btn:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border-color: rgba(255, 255, 255, 0.5) !important;
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   2) MAIN BAR – Brand & Search
+========================================================= */
+.main-bar {
+  position: relative;
+  background: var(--gov-white);
+  border-bottom: 1px solid var(--gov-border);
+}
+
+.main-bar::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(600px 300px at 10% 50%, rgba(0, 102, 204, 0.02), transparent 60%),
+    radial-gradient(600px 300px at 90% 50%, rgba(26, 58, 82, 0.02), transparent 60%);
+}
+
+.main-inner {
+  position: relative;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding-block: 12px;
+  z-index: 1;
+}
+
+/* Brand Section */
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 260px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.2s ease;
+}
+
+.brand:hover {
+  background: var(--gov-soft);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px var(--gov-shadow);
+}
+
+.logo {
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+  animation: floatLogo 5s ease-in-out infinite;
+}
+
+.brand-text .title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--gov-ink);
+  line-height: 1.2;
+}
+
+.brand-text .subtitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gov-muted);
+  line-height: 1.2;
+  margin-top: 2px;
+}
+
+/* Search Form */
+.search {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  max-width: 500px;
+}
+
+.search-field {
+  flex: 1;
+
+  ::ng-deep {
+    .mdc-text-field {
+      background: var(--gov-soft);
+      border-radius: 6px;
+    }
+
+    .mat-mdc-form-field-focus-overlay {
+      background: transparent;
+    }
+  }
+}
+
+.search-btn {
+  border-radius: 6px !important;
+  font-weight: 600 !important;
+  padding: 8px 20px !important;
+  white-space: nowrap;
+  transition: all 0.2s ease !important;
+}
+
+.search-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 102, 204, 0.2) !important;
+}
+
+/* Mobile Menu Button */
+.menu-btn {
+  display: none;
+  color: var(--gov-ink);
+
+  mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+/* Mobile Menu Panel */
+:host ::ng-deep .mobile-menu-panel.mat-mdc-menu-panel {
+  border-radius: 8px !important;
+  margin-top: 8px !important;
+
+  .mat-mdc-menu-content {
+    padding: 8px 0 !important;
+  }
+
+  .mat-mdc-menu-item {
+    font-weight: 500;
+    color: var(--gov-ink);
+
+    &:hover {
+      background: var(--gov-soft);
+    }
+  }
+}
+
+/* =========================================================
+   3) MENU BAR – Navigation
+========================================================= */
+.menu-bar {
+  background: var(--gov-soft);
+  border-block: 1px solid var(--gov-border);
+}
+
+.menu-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  padding-block: 8px;
+  align-items: center;
+}
+
+.menu-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 13px;
+  text-decoration: none;
+  color: var(--gov-ink);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  position: relative;
+
+  &:hover {
+    background: var(--gov-white);
+    color: var(--gov-accent);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px var(--gov-shadow);
+  }
+
+  &.active {
+    background: var(--gov-white);
+    color: var(--gov-accent);
+    box-shadow: 0 2px 8px var(--gov-shadow);
+
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 14px;
+      right: 14px;
+      height: 3px;
+      background: var(--gov-accent);
+      border-radius: 2px 2px 0 0;
+    }
+  }
+}
+
+.menu-link mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.menu-link .chev {
+  opacity: 0.7;
+  font-size: 18px;
+  transition: transform 0.2s ease;
+}
+
+.menu-link:hover .chev {
+  transform: rotate(180deg);
+  opacity: 1;
+}
+
+/* =========================================================
+   4) MEGA MENUS – Dropdown Panels
+========================================================= */
+:host ::ng-deep .cdk-overlay-pane .mega-panel.mat-mdc-menu-panel {
+  max-width: none !important;
+  min-width: unset !important;
+  overflow: visible !important;
+  margin-top: 0 !important;
+
+  .mat-mdc-menu-content {
+    padding: 0 !important;
+    max-height: none !important;
+  }
+}
+
+:host ::ng-deep .cdk-overlay-pane .mega {
+  width: min(1000px, 95vw);
+  background: var(--gov-white);
+  border: 1px solid var(--gov-border);
+  border-radius: 8px;
+  box-shadow: 0 8px 24px var(--gov-shadow-lg);
+  overflow: hidden;
+  animation: megaIn 0.2s ease both;
+}
+
+/* Mega Menu Header */
+.mega-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, var(--gov-soft) 0%, rgba(0, 102, 204, 0.03) 100%);
+  border-bottom: 1px solid var(--gov-border);
+
+  mat-icon {
+    color: var(--gov-accent);
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.mega-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gov-ink);
+  line-height: 1.3;
+}
+
+.mega-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gov-muted);
+  margin-top: 2px;
+}
+
+/* Mega Menu Grid */
+.mega-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  padding: 16px 20px;
+}
+
+.mega-col {
+  padding: 8px 12px;
+}
+
+.mega-h {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gov-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--gov-border);
+}
+
+.mega-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  color: var(--gov-ink);
+  font-size: 13px;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  cursor: pointer;
+
+  mat-icon {
+    font-size: 18px;
+    width: 18px;
+    height: 18px;
+    color: var(--gov-accent);
+  }
+
+  &:hover {
+    background: var(--gov-soft);
+    color: var(--gov-accent);
+    transform: translateX(4px);
+
+    mat-icon {
+      transform: scale(1.1);
+    }
+  }
+}
+
+/* =========================================================
+   5) NEWS TICKER
+========================================================= */
+.ticker {
+  background: var(--gov-white);
+  border-block: 1px solid var(--gov-border);
+  overflow: hidden;
+}
+
+.ticker-inner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 12px;
+  padding-block: 10px;
+}
+
+.ticker-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-weight: 700;
+  font-size: 12px;
+  background: var(--gov-soft);
+  color: var(--gov-accent);
+  white-space: nowrap;
+  border: 1px solid var(--gov-border);
+
+  mat-icon {
+    font-size: 16px;
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.ticker-track {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 6px;
+  background: linear-gradient(90deg, var(--gov-soft) 0%, var(--gov-white) 50%, var(--gov-soft) 100%);
+  border: 1px solid var(--gov-border);
+}
+
+.ticker-move {
+  display: inline-flex;
+  align-items: center;
+  gap: 24px;
+  white-space: nowrap;
+  animation: ticker-ltr 30s linear infinite;
+  padding-inline: 12px;
+}
+
+.ticker-track:hover .ticker-move {
+  animation-play-state: paused;
+}
+
+:host-context([dir="rtl"]) .ticker-move {
+  animation-name: ticker-rtl;
+}
+
+.ticker-item {
+  display: inline-block;
+  color: var(--gov-ink);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: color 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    color: var(--gov-accent);
+    text-decoration: underline;
+  }
+}
+
+/* =========================================================
+   ANIMATIONS
+========================================================= */
+@keyframes shine {
+  0% {
+    transform: translateX(-120%);
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+}
+
+@keyframes floatLogo {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes ticker-ltr {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes ticker-rtl {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(50%);
+  }
+}
+
+@keyframes megaIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE DESIGN
+========================================================= */
+@media (max-width: 1050px) {
+  .main-inner {
+    grid-template-columns: auto 1fr;
+  }
+
+  .search {
+    max-width: 100%;
+  }
+
+  .menu-bar {
+    display: none;
+  }
+
+  .menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .utility-bar {
+    padding-block: 8px;
+  }
+
+  .utility-inner {
+    gap: 8px;
+    padding-block: 8px;
+  }
+
+  .utility-left,
+  .utility-right {
+    gap: 8px;
+  }
+
+  .u-link {
+    padding: 5px 8px;
+    font-size: 12px;
+    gap: 4px;
+  }
+
+  .dot {
+    display: none;
+  }
+
+  .lang-btn,
+  .acc-btn {
+    padding: 6px 8px !important;
+    font-size: 11px !important;
+
+    mat-icon {
+      font-size: 16px !important;
+      width: 16px !important;
+      height: 16px !important;
+    }
+  }
+
+  .main-inner {
+    gap: 12px;
+    padding-block: 10px;
+  }
+
+  .brand {
+    min-width: auto;
+    gap: 8px;
+    padding: 6px 8px;
+  }
+
+  .logo {
+    width: 44px;
+    height: 44px;
+  }
+
+  .brand-text .title {
+    font-size: 13px;
+  }
+
+  .brand-text .subtitle {
+    font-size: 10px;
+  }
+
+  .search {
+    display: none;
+  }
+
+  .ticker-inner {
+    gap: 8px;
+    padding-block: 8px;
+  }
+
+  .ticker-label {
+    padding: 6px 10px;
+    font-size: 11px;
+  }
+
+  .ticker-track {
+    height: 36px;
+  }
+
+  .ticker-item {
+    font-size: 12px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Side Logo Container */
+.side-logo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+  display: flex;
+  flex-direction: column;
+  /* ✔ عمودي */
+  align-items: center;
+  /* ✔ توسيط */
+  gap: 14px;
+  /* ✔ مسافة طبيعية */
+}
+
+.side-logo.left {
+  left: 32px;
+}
+
+.side-logo.right {
+  right: 32px;
+}
+
+/* Logo */
+.side-logo img {
+  height: 100px;
+  object-fit: contain;
+}
+
+/* Search under logo */
+.side-search {
+  min-width: 220px;
+  padding: 6px 14px;
+  border-radius: 20px;
+  border: 1px solid #cfd7e6;
+  background: #fff;
+}
+
+.side-search input {
+  font-size: 13px;
+}
+
+/* Hide on mobile */
+@media (max-width: 768px) {
+  .side-logo {
+    display: none;
+  }
+}
+
+.gov-hero-header {
+  position: relative;
+  background: #ffffff;
+  min-height: 220px;
+  /* أقل */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Side Logos */
+.side-logo {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+
+}
+
+/* START = يمين في RTL / شمال في LTR */
+.side-logo.start {
+  inset-inline-start: 32px;
+  margin-inline-start: 500px;
+}
+
+/* END = شمال في RTL / يمين في LTR */
+.side-logo.end {
+  inset-inline-end: 32px;
+  margin-inline-end: 300px;
+}
+
+
+.side-logo.left {
+  left: 32px;
+}
+
+.side-logo img {
+  height: 68px;
+  opacity: 0.95;
+  background-color: #f3f8f8;
+}
+
+/* Center */
+.hero-center {
+  text-align: center;
+}
+
+.hero-center h1 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+  color: #243c8f;
+}
+
+.hero-center h2 {
+  margin: 6px 0 16px;
+  font-size: 20px;
+  font-weight: 600;
+  color: #222;
+}
+
+/* Search */
+.hero-search {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 18px;
+  border: 1px solid #cfd7e6;
+  border-radius: 22px;
+  min-width: 320px;
+}
+
+.hero-search mat-icon {
+  color: #243c8f;
+  font-size: 20px;
+}
+
+.hero-search input {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .side-logo {
+    display: none;
+  }
+
+  .hero-search {
+    min-width: 240px;
+  }
+
+
+  .mega-menu {
+    padding: 0 !important;
+  }
+
+  .mega-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 16px;
+    padding: 18px 22px;
+    max-width: 420px;
+  }
+
+  .mega-col {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mega-title {
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 10px;
+    color: #002D62;
+  }
+
+  .mega-col button {
+    height: 42px;
+    border-radius: 10px;
+    font-weight: 500;
+  }
+
+  .empty-state {
+    padding: 12px;
+    color: #888;
+    font-size: 13px;
+  }
+
+}

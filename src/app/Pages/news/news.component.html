@@ -1,0 +1,34 @@
+<div class="news-layout">
+  <app-news-sidebar></app-news-sidebar>
+<section class="gov-tours" [class.rtl]="lang.current === 'ar'">
+
+  <div class="loading" *ngIf="loading">
+    <mat-progress-spinner mode="indeterminate"></mat-progress-spinner>
+  </div>
+  <mat-card class="tour-row" *ngFor="let tour of news" (click)="openDetails(tour.id)">
+
+    <!-- Text -->
+    <div class="tour-content">
+      <h2 class="title">{{ title(tour) }}</h2>
+
+      <div class="date">
+        <mat-icon>event</mat-icon>
+        {{ formatDate(tour.date) }}
+      </div>
+
+      <p class="excerpt">{{ excerpt(tour) }}</p>
+
+      <button mat-raised-button color="primary" class="more-btn">
+        {{ lang.current === 'ar' ? 'المزيد' : 'More' }}
+      </button>
+    </div>
+
+    <!-- Image -->
+    <div class="tour-image">
+      <img [src]="cover(tour)" alt="tour image">
+    </div>
+
+  </mat-card>
+
+</section>
+</div>

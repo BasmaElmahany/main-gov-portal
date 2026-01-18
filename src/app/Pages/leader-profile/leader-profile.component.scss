@@ -1,0 +1,164 @@
+$primary: #002D62;
+$accent: #D4AF37;
+
+.leader-profile {
+  display: flex;
+  align-items: stretch;
+  gap: 32px;
+  padding: 48px 24px;
+  background: #f7f9fc;
+
+  &.rtl {
+    direction: rtl;
+  }
+}
+
+/* Image */
+.leader-image {
+  flex: 0 0 320px;
+
+  img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0,0,0,.25);
+    filter: grayscale(10%);
+  }
+}
+
+/* Bio */
+.leader-bio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.leader-name {
+  font-size: 32px;
+  font-weight: 800;
+  color: $primary;
+  margin: 0;
+}
+
+.leader-position {
+  font-size: 18px;
+  font-weight: 700;
+  color: $accent;
+  margin: 6px 0 12px;
+}
+
+.leader-period {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 24px;
+
+  mat-icon {
+    font-size: 18px;
+    color: $accent;
+  }
+}
+
+/* Biography text */
+.leader-text {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #222;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-inline-end: 12px;
+
+  scrollbar-width: thin;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: rgba(0,0,0,.25);
+    border-radius: 10px;
+  }
+}
+
+/* RTL flip */
+/* =========================
+   RTL FIX – PROPER WAY
+========================= */
+
+.leader-profile {
+  display: flex;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 48px 24px;
+  background: #f7f9fc;
+}
+
+/* LTR (English default) */
+.leader-profile:not(.rtl) {
+  direction: ltr;
+}
+
+/* RTL (Arabic) */
+.leader-profile.rtl {
+  direction: rtl;
+}
+
+/* Image */
+.leader-image {
+  flex: 0 0 320px;
+}
+
+.leader-image img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 20px 40px rgba(0,0,0,.25);
+}
+
+/* Bio */
+.leader-bio {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  text-align: start; /* 🔥 important */
+}
+
+/* Period row */
+.leader-period {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Biography text */
+.leader-text {
+  font-size: 16px;
+  line-height: 1.9;
+  color: #222;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-inline-end: 12px; /* 🔥 logical */
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 900px) {
+  .leader-profile {
+    flex-direction: column;
+  }
+
+  .leader-image img {
+    height: 300px;
+  }
+
+  .leader-text {
+    max-height: none;
+  }
+}
+
+
